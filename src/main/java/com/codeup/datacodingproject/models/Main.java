@@ -67,4 +67,5 @@ public class Main {
 
     @Column(nullable = false, columnDefinition = "INT(10)")
     private long q10;
+    
 }
