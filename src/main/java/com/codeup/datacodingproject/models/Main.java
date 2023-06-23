@@ -3,6 +3,8 @@ package com.codeup.datacodingproject.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -67,5 +69,9 @@ public class Main {
 
     @Column(nullable = false, columnDefinition = "INT(10)")
     private long q10;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @ToString.Exclude
+    private List<Main> mains;
     
 }

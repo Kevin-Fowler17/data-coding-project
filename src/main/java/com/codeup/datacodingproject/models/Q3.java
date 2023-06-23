@@ -20,4 +20,8 @@ public class Q3 {
     @Column
     private long code;
 
+    @ManyToOne
+    @JoinColumn (nullable = false, name = "main_id")
+    private User user;
+
 }
