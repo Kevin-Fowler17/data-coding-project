@@ -18,6 +18,13 @@ public class Q7 {
     private long id;
 
     @Column
-    private long code;
+    private long q7;
+
+    @Column(nullable = true)
+    private String q7os;
+
+    @ManyToOne
+    @JoinColumn (nullable = false, name = "respondent_id")
+    private Respondent respondent;
 
 }

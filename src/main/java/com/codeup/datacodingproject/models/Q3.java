@@ -17,11 +17,14 @@ public class Q3 {
     @Column(columnDefinition = "INT(10) UNSIGNED")
     private long id;
 
-    @Column
-    private long code;
+    @Column(nullable = false, columnDefinition = "INT(10)")
+    private long q3;
+
+    @Column(nullable = true)
+    private String q3os;
 
     @ManyToOne
-    @JoinColumn (nullable = false, name = "main_id")
-    private User user;
+    @JoinColumn (nullable = false, name = "respondent_id")
+    private Respondent respondent;
 
 }
