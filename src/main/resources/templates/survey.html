@@ -3,83 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <title>Survey</title>
+
+    <script>
+        function randomizeOptions() {
+            var optionsContainer = document.getElementById("optionsContainer");
+            var options = optionsContainer.children;
+            var randomOptions = [];
+
+            // Copy the options into an array
+            for (var i = 0; i < options.length; i++) {
+                randomOptions.push(options[i]);
+            }
+
+            // Randomize the array
+            randomOptions.sort(function() {
+                return 0.5 - Math.random();
+            });
+
+            // Append the randomized options back to the container
+            for (var i = 0; i < randomOptions.length; i++) {
+                optionsContainer.appendChild(randomOptions[i]);
+            }
+        }
+
+        function handleOtherOption() {
+            var otherOption = document.getElementById("otherOption");
+            var otherTextBox = document.getElementById("otherTextBox");
+
+            if (otherOption.checked) {
+                otherTextBox.style.display = "block";
+            } else {
+                otherTextBox.style.display = "none";
+            }
+        }
+
+        function handleColorChange() {
+            var otherOption = document.getElementById("otherOption");
+            var otherTextBox = document.getElementById("otherTextBox");
+
+            if (otherOption.checked) {
+                otherOption.checked = false;
+                otherTextBox.style.display = "none";
+            }
+        }
+    </script>
+
 </head>
-<body>
+<body onload="randomizeOptions()">
 
-Q1. What is your favorite color?
-1 Blue
-2 Green
-3 Indigo
-4 Orange
-5 Red
-6 Violet
-7 Yellow
-97 Other
+<form>
+    <p>Q1. What is your favorite color?</p>
+    <div id="optionsContainer">
+        <label><input type="radio" name="color" value="1" onchange="handleColorChange()"> Blue</label><br>
+        <label><input type="radio" name="color" value="2" onchange="handleColorChange()"> Green</label><br>
+        <label><input type="radio" name="color" value="3" onchange="handleColorChange()"> Indigo</label><br>
+        <label><input type="radio" name="color" value="4" onchange="handleColorChange()"> Orange</label><br>
+        <label><input type="radio" name="color" value="5" onchange="handleColorChange()"> Red</label><br>
+        <label><input type="radio" name="color" value="6" onchange="handleColorChange()"> Violet</label><br>
+        <label><input type="radio" name="color" value="7" onchange="handleColorChange()"> Yellow</label><br>
+        <label><input type="radio" name="color" value="97" id="otherOption" onchange="handleOtherOption()"> Other</label><br>
+    </div>
+    <div id="otherTextBox" style="display: none;">
+        <label for="otherText">Please specify:</label>
+        <input type="text" id="otherText" name="otherText">
+    </div>
+    <input type="submit" value="Submit">
+</form>
 
-Q2. Why is this your favorite color?
 
-Q3. What other colors do you like?
-1 Blue
-2 Green
-3 Indigo
-4 Orange
-5 Red
-6 Violet
-7 Yellow
-97 Other
-98 None
+<!--Q2. Why is this your favorite color?-->
 
-Q4. Rate the following colors ...
-1 Blue
-2 Green
-3 Indigo
-4 Orange
-5 Red
-6 Violet
-7 Yellow
-97 Other
+<!--Q3. What other colors do you like?-->
+<!--1 Blue-->
+<!--2 Green-->
+<!--3 Indigo-->
+<!--4 Orange-->
+<!--5 Red-->
+<!--6 Violet-->
+<!--7 Yellow-->
+<!--97 Other-->
+<!--98 None-->
 
-Q5. What is your favorite sport?
-1 Basebell
-2 Basketball
-3 Boxing
-4 Football
-5 Golf
-6 Hockey
-7 Soccer
-8 Tennis
-9 Volleyball
-97 Other
+<!--Q4. Rate the following colors ...-->
+<!--1 Blue-->
+<!--2 Green-->
+<!--3 Indigo-->
+<!--4 Orange-->
+<!--5 Red-->
+<!--6 Violet-->
+<!--7 Yellow-->
+<!--97 Other-->
 
-Q6. Why is this your favorite sport?
+<!--Q5. What is your favorite sport?-->
+<!--1 Basebell-->
+<!--2 Basketball-->
+<!--3 Boxing-->
+<!--4 Football-->
+<!--5 Golf-->
+<!--6 Hockey-->
+<!--7 Soccer-->
+<!--8 Tennis-->
+<!--9 Volleyball-->
+<!--97 Other-->
 
-Q7. What other sports do you like?
-1 Basebell
-2 Basketball
-3 Boxing
-4 Football
-5 Golf
-6 Hockey
-7 Soccer
-8 Tennis
-9 Volleyball
-97 Other
-98 None
+<!--Q6. Why is this your favorite sport?-->
 
-Q8. What is your age?
+<!--Q7. What other sports do you like?-->
+<!--1 Basebell-->
+<!--2 Basketball-->
+<!--3 Boxing-->
+<!--4 Football-->
+<!--5 Golf-->
+<!--6 Hockey-->
+<!--7 Soccer-->
+<!--8 Tennis-->
+<!--9 Volleyball-->
+<!--97 Other-->
+<!--98 None-->
 
-Q9. What is your gender?
-1 Male
-2 Female
+<!--Q8. What is your age?-->
 
-Q10. What is your income?
-1 Less than $20,000
-2 $20,000 to $34,999
-3 $35,000 to $49,999
-4 $50,000 to $74,999
-5 $75,000 to $99,999
-6 $100,000 or more
-99 Refused
+<!--Q9. What is your gender?-->
+<!--1 Male-->
+<!--2 Female-->
+
+<!--Q10. What is your income?-->
+<!--1 Less than $20,000-->
+<!--2 $20,000 to $34,999-->
+<!--3 $35,000 to $49,999-->
+<!--4 $50,000 to $74,999-->
+<!--5 $75,000 to $99,999-->
+<!--6 $100,000 or more-->
+<!--99 Refused-->
 
 </body>
 </html>
