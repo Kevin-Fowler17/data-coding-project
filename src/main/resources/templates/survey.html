@@ -4,190 +4,202 @@
     <meta charset="UTF-8">
     <title>Survey</title>
 
-    <script>
-        function randomizeOptions() {
-            var optionsContainer = document.getElementById("optionsContainer");
-            var options = optionsContainer.children;
-            var randomOptions = [];
-
-            // Copy the options into an array
-            for (var i = 0; i < options.length; i++) {
-                randomOptions.push(options[i]);
-            }
-
-            // Randomize the array
-            randomOptions.sort(function() {
-                return 0.5 - Math.random();
-            });
-
-            // Append the randomized options back to the container
-            for (var i = 0; i < randomOptions.length; i++) {
-                optionsContainer.appendChild(randomOptions[i]);
-            }
-        }
-
-        function handleOtherOption() {
-            var otherOption = document.getElementById("otherOption");
-            var otherTextBox = document.getElementById("otherTextBox");
-
-            if (otherOption.checked) {
-                otherTextBox.style.display = "block";
-            } else {
-                otherTextBox.style.display = "none";
-            }
-        }
-
-        function handleColorChange() {
-            var otherOption = document.getElementById("otherOption");
-            var otherTextBox = document.getElementById("otherTextBox");
-
-            if (otherOption.checked) {
-                otherOption.checked = false;
-                otherTextBox.style.display = "none";
-            }
-        }
-    </script>
-
 </head>
 <body onload="randomizeOptions()">
 
 <form>
     <p>Q1. What is your favorite color?</p>
-    <div id="optionsContainer">
-        <label><input type="radio" name="color" value="1" onchange="handleColorChange()"> Blue</label><br>
-        <label><input type="radio" name="color" value="2" onchange="handleColorChange()"> Green</label><br>
-        <label><input type="radio" name="color" value="3" onchange="handleColorChange()"> Indigo</label><br>
-        <label><input type="radio" name="color" value="4" onchange="handleColorChange()"> Orange</label><br>
-        <label><input type="radio" name="color" value="5" onchange="handleColorChange()"> Red</label><br>
-        <label><input type="radio" name="color" value="6" onchange="handleColorChange()"> Violet</label><br>
-        <label><input type="radio" name="color" value="7" onchange="handleColorChange()"> Yellow</label><br>
-        <label><input type="radio" name="color" value="97" id="otherOption" onchange="handleOtherOption()"> Other</label><br>
+    <div>
+        <label><input type="radio" name="q1" value="1"> Blue</label><br>
+        <label><input type="radio" name="q1" value="2"> Green</label><br>
+        <label><input type="radio" name="q1" value="3"> Indigo</label><br>
+        <label><input type="radio" name="q1" value="4"> Orange</label><br>
+        <label><input type="radio" name="q1" value="5"> Red</label><br>
+        <label><input type="radio" name="q1" value="6"> Violet</label><br>
+        <label><input type="radio" name="q1" value="7"> Yellow</label><br>
+        <label><input type="radio" name="q1" value="97"> Other</label><br>
     </div>
-    <div id="otherTextBox" style="display: none;">
+    <div id="otherTextBox" style="display: ">
+        <label for="q1os">Please specify:</label>
+        <input type="text" id="q1os" name="otherText">
+    </div>
+
+    <br><br>
+
+    <div id="showQ2" style="display: ;">
+        <label for="q2">Q2. Why is "insert color" your favorite color?</label><br><br>
+        <textarea id="q2" name="q2"></textarea>
+    </div>
+
+    <br>
+
+    <p>Q3. What other colors do you like?</p>
+    <div>
+        <label><input type="checkbox" name="q3" value="1"> Blue</label><br>
+        <label><input type="checkbox" name="q3" value="2"> Green</label><br>
+        <label><input type="checkbox" name="q3" value="3"> Indigo</label><br>
+        <label><input type="checkbox" name="q3" value="4"> Orange</label><br>
+        <label><input type="checkbox" name="q3" value="5"> Red</label><br>
+        <label><input type="checkbox" name="q3" value="6"> Violet</label><br>
+        <label><input type="checkbox" name="q3" value="7"> Yellow</label><br>
+        <label><input type="checkbox" name="q3" value="97" id="otherOption"> Other</label><br>
+        <label><input type="checkbox" name="q3" value="98"> None</label>
+    </div>
+    <div id="otherTextBox" style="display: ;">
         <label for="otherText">Please specify:</label>
         <input type="text" id="otherText" name="otherText">
     </div>
-    <input type="submit" value="Submit">
-</form>
 
+    <br>
 
-<!--Q2. Why is this your favorite color?-->
-
-<!--Q3. What other colors do you like?-->
-<!--1 Blue-->
-<!--2 Green-->
-<!--3 Indigo-->
-<!--4 Orange-->
-<!--5 Red-->
-<!--6 Violet-->
-<!--7 Yellow-->
-<!--97 Other-->
-<!--98 None-->
-<form>
-    <p>Q1. What is your favorite color?</p>
-    <div id="optionsContainer">
-        <label><input type="radio" name="color" value="1" onchange="handleColorChange()"> Blue</label><br>
-        <label><input type="radio" name="color" value="2" onchange="handleColorChange()"> Green</label><br>
-        <label><input type="radio" name="color" value="3" onchange="handleColorChange()"> Indigo</label><br>
-        <label><input type="radio" name="color" value="4" onchange="handleColorChange()"> Orange</label><br>
-        <label><input type="radio" name="color" value="5" onchange="handleColorChange()"> Red</label><br>
-        <label><input type="radio" name="color" value="6" onchange="handleColorChange()"> Violet</label><br>
-        <label><input type="radio" name="color" value="7" onchange="handleColorChange()"> Yellow</label><br>
-        <label><input type="radio" name="color" value="97" id="otherOption" onchange="handleOtherOption()"> Other</label><br>
+    <p>Q4. Rate the following colors ... </p>
+    <div id="ratingsContainer">
+        <div class="rating-item">
+            <span></span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+        </div>
+        <div class="rating-item">
+            <span>Blue</span>
+            <input type="radio" name="q4_1" value="1">
+            <input type="radio" name="q4_1" value="2">
+            <input type="radio" name="q4_1" value="3">
+            <input type="radio" name="q4_1" value="4">
+            <input type="radio" name="q4_1" value="5">
+        </div>
+        <div class="rating-item">
+            <span>Green</span>
+            <input type="radio" name="q4_2" value="1">
+            <input type="radio" name="q4_2" value="2">
+            <input type="radio" name="q4_2" value="3">
+            <input type="radio" name="q4_2" value="4">
+            <input type="radio" name="q4_2" value="5">
+        </div>
+        <div class="rating-item">
+            <span>Indigo</span>
+            <input type="radio" name="q4_3" value="1">
+            <input type="radio" name="q4_3" value="2">
+            <input type="radio" name="q4_3" value="3">
+            <input type="radio" name="q4_3" value="4">
+            <input type="radio" name="q4_3" value="5">
+        </div>
+        <div class="rating-item">
+            <span>Orange</span>
+            <input type="radio" name="q4_4" value="1">
+            <input type="radio" name="q4_4" value="2">
+            <input type="radio" name="q4_4" value="3">
+            <input type="radio" name="q4_4" value="4">
+            <input type="radio" name="q4_4" value="5">
+        </div>
+        <div class="rating-item">
+            <span>Red</span>
+            <input type="radio" name="q4_5" value="1">
+            <input type="radio" name="q4_5" value="2">
+            <input type="radio" name="q4_5" value="3">
+            <input type="radio" name="q4_5" value="4">
+            <input type="radio" name="q4_5" value="5">
+        </div>
+        <div class="rating-item">
+            <span>Violet</span>
+            <input type="radio" name="q4_6" value="1">
+            <input type="radio" name="q4_6" value="2">
+            <input type="radio" name="q4_6" value="3">
+            <input type="radio" name="q4_6" value="4">
+            <input type="radio" name="q4_6" value="5">
+        </div>
+        <div class="rating-item">
+            <span>Yellow</span>
+            <input type="radio" name="q4_7" value="1">
+            <input type="radio" name="q4_7" value="2">
+            <input type="radio" name="q4_7" value="3">
+            <input type="radio" name="q4_7" value="4">
+            <input type="radio" name="q4_7" value="5">
+        </div>
+        <div class="rating-item">
+            <span>Other</span>
+            <input type="radio" name="q4_97" value="1">
+            <input type="radio" name="q4_97" value="2">
+            <input type="radio" name="q4_97" value="3">
+            <input type="radio" name="q4_97" value="4">
+            <input type="radio" name="q4_97" value="5">
+        </div>
     </div>
-    <div id="otherTextBox" style="display: none;">
+
+    <br>
+
+    <p>Q5. What is your favorite sport?</p>
+    <div>
+        <label><input type="radio" name="q5" value="1"> Basebell</label><br>
+        <label><input type="radio" name="q5" value="2"> Basketball</label><br>
+        <label><input type="radio" name="q5" value="3"> Boxing</label><br>
+        <label><input type="radio" name="q5" value="4"> Football</label><br>
+        <label><input type="radio" name="q5" value="5"> Golf</label><br>
+        <label><input type="radio" name="q5" value="6"> Hockey</label><br>
+        <label><input type="radio" name="q5" value="7"> Soccer</label><br>
+        <label><input type="radio" name="q5" value="8"> Tennis</label><br>
+        <label><input type="radio" name="q5" value="9"> Volleyball</label><br>
+        <label><input type="radio" name="q5" value="97"> Other</label><br>
+    </div>
+    <div id="otherTextBox" style="display: ">
+        <label for="q5os">Please specify:</label>
+        <input type="text" id="q5os" name="q5os">
+    </div>
+
+    <br><br>
+
+    <div id="showQ6" style="display: ;">
+        <label for="q6">Q6. Why is "insert sport" your favorite sport?</label><br><br>
+        <textarea id="q6" name="q6"></textarea>
+    </div>
+
+    <br>
+
+    <p>Q7. What other sports do you like?</p>
+    <div>
+        <label><input type="checkbox" name="q7" value="1"> Basebell</label><br>
+        <label><input type="checkbox" name="q7" value="2"> Basketball</label><br>
+        <label><input type="checkbox" name="q7" value="3"> Boxing</label><br>
+        <label><input type="checkbox" name="q7" value="4"> Football</label><br>
+        <label><input type="checkbox" name="q7" value="5"> Golf</label><br>
+        <label><input type="checkbox" name="q7" value="6"> Hockey</label><br>
+        <label><input type="checkbox" name="q7" value="7"> Soccer</label><br>
+        <label><input type="checkbox" name="q7" value="8"> Tennis</label><br>
+        <label><input type="checkbox" name="q7" value="9"> Volleyball</label><br>
+        <label><input type="checkbox" name="q7" value="97" id="otherOption"> Other</label><br>
+        <label><input type="checkbox" name="q7" value="98"> None</label>
+    </div>
+    <div id="otherTextBox" style="display: ;">
         <label for="otherText">Please specify:</label>
         <input type="text" id="otherText" name="otherText">
     </div>
-    <input type="submit" value="Submit">
-</form>
 
-<!--Q4. Rate the following colors ...-->
-<!--1 Blue-->
-<!--2 Green-->
-<!--3 Indigo-->
-<!--4 Orange-->
-<!--5 Red-->
-<!--6 Violet-->
-<!--7 Yellow-->
-<!--97 Other-->
+    <br>
 
-<!--Q5. What is your favorite sport?-->
-<!--1 Basebell-->
-<!--2 Basketball-->
-<!--3 Boxing-->
-<!--4 Football-->
-<!--5 Golf-->
-<!--6 Hockey-->
-<!--7 Soccer-->
-<!--8 Tennis-->
-<!--9 Volleyball-->
-<!--97 Other-->
-<form>
-    <p>Q1. What is your favorite color?</p>
-    <div id="optionsContainer">
-        <label><input type="radio" name="color" value="1" onchange="handleColorChange()"> Blue</label><br>
-        <label><input type="radio" name="color" value="2" onchange="handleColorChange()"> Green</label><br>
-        <label><input type="radio" name="color" value="3" onchange="handleColorChange()"> Indigo</label><br>
-        <label><input type="radio" name="color" value="4" onchange="handleColorChange()"> Orange</label><br>
-        <label><input type="radio" name="color" value="5" onchange="handleColorChange()"> Red</label><br>
-        <label><input type="radio" name="color" value="6" onchange="handleColorChange()"> Violet</label><br>
-        <label><input type="radio" name="color" value="7" onchange="handleColorChange()"> Yellow</label><br>
-        <label><input type="radio" name="color" value="97" id="otherOption" onchange="handleOtherOption()"> Other</label><br>
-    </div>
-    <div id="otherTextBox" style="display: none;">
-        <label for="otherText">Please specify:</label>
-        <input type="text" id="otherText" name="otherText">
-    </div>
-    <input type="submit" value="Submit">
-</form>
-<!--Q6. Why is this your favorite sport?-->
+    <p>Q8. What is your age?</p>
+    <input type="number" id="ageInput" name="q8" min="18" max="99" required>
+    <label for="ageInput"> years</label>
 
-<!--Q7. What other sports do you like?-->
-<!--1 Basebell-->
-<!--2 Basketball-->
-<!--3 Boxing-->
-<!--4 Football-->
-<!--5 Golf-->
-<!--6 Hockey-->
-<!--7 Soccer-->
-<!--8 Tennis-->
-<!--9 Volleyball-->
-<!--97 Other-->
-<!--98 None-->
-<form>
-    <p>Q1. What is your favorite color?</p>
-    <div id="optionsContainer">
-        <label><input type="radio" name="color" value="1" onchange="handleColorChange()"> Blue</label><br>
-        <label><input type="radio" name="color" value="2" onchange="handleColorChange()"> Green</label><br>
-        <label><input type="radio" name="color" value="3" onchange="handleColorChange()"> Indigo</label><br>
-        <label><input type="radio" name="color" value="4" onchange="handleColorChange()"> Orange</label><br>
-        <label><input type="radio" name="color" value="5" onchange="handleColorChange()"> Red</label><br>
-        <label><input type="radio" name="color" value="6" onchange="handleColorChange()"> Violet</label><br>
-        <label><input type="radio" name="color" value="7" onchange="handleColorChange()"> Yellow</label><br>
-        <label><input type="radio" name="color" value="97" id="otherOption" onchange="handleOtherOption()"> Other</label><br>
-    </div>
-    <div id="otherTextBox" style="display: none;">
-        <label for="otherText">Please specify:</label>
-        <input type="text" id="otherText" name="otherText">
-    </div>
-    <input type="submit" value="Submit">
-</form>
-
-<!--Q8. What is your age?-->
+    <br><br>
 
     <p>Q9. What is your gender?</p>
-    <label><input type="radio" name="color" value="1"> Male</label><br>
-    <label><input type="radio" name="color" value="2"> Female</label><br>
+    <label><input type="radio" name="q9" value="1"> Male</label><br>
+    <label><input type="radio" name="q9" value="2"> Female</label><br>
+
+    <br>
 
     <p>Q10. What is your income?</p>
-    <label><input type="radio" name="color" value="1"> Less than $20,000</label><br>
-    <label><input type="radio" name="color" value="2"> $20,000 to $34,999</label><br>
-    <label><input type="radio" name="color" value="3"> $35,000 to $49,999</label><br>
-    <label><input type="radio" name="color" value="4"> $50,000 to $74,999</label><br>
-    <label><input type="radio" name="color" value="5"> $75,000 to $99,999</label><br>
-    <label><input type="radio" name="color" value="6"> $100,000 or more</label><br>
-    <label><input type="radio" name="color" value="99"> Refused</label><br>
+    <label><input type="radio" name="q10" value="1"> Less than $20,000</label><br>
+    <label><input type="radio" name="q10" value="2"> $20,000 to $34,999</label><br>
+    <label><input type="radio" name="q10" value="3"> $35,000 to $49,999</label><br>
+    <label><input type="radio" name="q10" value="4"> $50,000 to $74,999</label><br>
+    <label><input type="radio" name="q10" value="5"> $75,000 to $99,999</label><br>
+    <label><input type="radio" name="q10" value="6"> $100,000 or more</label><br>
+    <label><input type="radio" name="q10" value="99"> Refused</label><br>
+
+    <br><br>
 
     <input type="submit" value="Submit">
 
