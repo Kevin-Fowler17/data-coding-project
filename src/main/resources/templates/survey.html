@@ -11,7 +11,7 @@
 
 <form>
     <p>Q1. What is your favorite color?</p>
-    <div>
+    <div class="optionsColor">
         <label><input type="radio" name="q1" value="1"> Blue</label><br>
         <label><input type="radio" name="q1" value="2"> Green</label><br>
         <label><input type="radio" name="q1" value="3"> Indigo</label><br>
@@ -32,7 +32,7 @@
     </div>
 
     <p>Q3. What other colors do you like?</p>
-    <div>
+    <div class="optionsColor">
         <label><input type="checkbox" name="q3" value="1"> Blue</label><br>
         <label><input type="checkbox" name="q3" value="2"> Green</label><br>
         <label><input type="checkbox" name="q3" value="3"> Indigo</label><br>
@@ -196,6 +196,8 @@
 
 <script th:src="@{/js/handleOtherSpecify.js}"></script>
 <script th:src="@{/js/handleNoneOptions.js}"></script>
+<!--<script th:src="@{/js/randomizeQuestions.js}"></script>-->
+<script th:src="@{/js/showHiddenQuestions.js}"></script>
 
 </body>
 </html>
