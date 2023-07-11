@@ -14,7 +14,7 @@ function toggleOtherTextBox(radioSelector, otherOptionSelector, otherTextBoxSele
     toggleTextBox();
 }
 
-toggleOtherTextBox('input[name="q1"]', '#Q1OtherOption', '#showQ1OtherTextBox');
-toggleOtherTextBox('input[name="q3"]', '#Q3OtherOption', '#showQ3OtherTextBox');
-toggleOtherTextBox('input[name="q5"]', '#Q5OtherOption', '#showQ5OtherTextBox');
-toggleOtherTextBox('input[name="q7"]', '#Q7OtherOption', '#showQ7OtherTextBox');
+toggleOtherTextBox('input[name="q1"]', '#Q1OtherOption', '#q1os');
+toggleOtherTextBox('input[name="q3"]', '#Q3OtherOption', '#q3os');
+toggleOtherTextBox('input[name="q5"]', '#Q5OtherOption', '#q5os');
+toggleOtherTextBox('input[name="q7"]', '#Q7OtherOption', '#q7os');

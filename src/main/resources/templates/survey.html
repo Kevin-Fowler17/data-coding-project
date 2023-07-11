@@ -19,12 +19,10 @@
         <label><input type="radio" name="q1" value="5"> Red</label><br>
         <label><input type="radio" name="q1" value="6"> Violet</label><br>
         <label><input type="radio" name="q1" value="7"> Yellow</label><br>
-        <label><input type="radio" name="q1" value="97" id="Q1OtherOption"> Other</label><br>
-    </div>
-    <div id="showQ1OtherTextBox" style="display: none">
-        <label for="q1os">Please specify:</label>
-        <input type="text" id="q1os" name="q1os">
-        <br><br>
+        <label>
+            <input type="radio" name="q1" value="97" id="Q1OtherOption"> Other
+            <input type="text" id="q1os" placeholder="Please specify" name="q1os" style="margin-left: 10px; display: none;">
+        </label><br>
     </div>
 
     <div id="showQ2" style="display: none;">
@@ -42,13 +40,11 @@
         <label><input type="checkbox" name="q3" value="5"> Red</label><br>
         <label><input type="checkbox" name="q3" value="6"> Violet</label><br>
         <label><input type="checkbox" name="q3" value="7"> Yellow</label><br>
-        <label><input type="checkbox" name="q3" value="97" id="Q3OtherOption"> Other</label><br>
-        <label><input type="checkbox" name="q3" value="98"> None</label>
-    </div>
-    <div id="showQ3OtherTextBox" style="display: none;">
-        <label for="q3os">Please specify:</label>
-        <input type="text" id="q3os" name="q3os">
-        <br>
+        <label>
+            <input type="checkbox" name="q3" value="97" id="Q3OtherOption"> Other
+            <input type="text" id="q3os" placeholder="Please specify" name="q3os" style="margin-left: 10px; display: none;">
+        </label><br>
+        <label><input type="checkbox" name="q3" value="98" id="Q3NoneOption"> None</label>
     </div>
 
     <p>Q4. Rate the following colors ... </p>
@@ -139,12 +135,10 @@
         <label><input type="radio" name="q5" value="7"> Soccer</label><br>
         <label><input type="radio" name="q5" value="8"> Tennis</label><br>
         <label><input type="radio" name="q5" value="9"> Volleyball</label><br>
-        <label><input type="radio" name="q5" value="97" id="Q5OtherOption"> Other</label><br>
-    </div>
-    <div id="showQ5OtherTextBox" style="display: none;">
-        <label for="q5os">Please specify:</label>
-        <input type="text" id="q5os" name="q5os">
-        <br><br>
+        <label>
+            <input type="radio" name="q5" value="97" id="Q5OtherOption"> Other
+            <input type="text" id="q5os" placeholder="Please specify" name="q5os" style="margin-left: 10px; display: none;">
+        </label><br>
     </div>
 
     <div id="showQ6" style="display: none;">
@@ -164,13 +158,11 @@
         <label><input type="checkbox" name="q7" value="7"> Soccer</label><br>
         <label><input type="checkbox" name="q7" value="8"> Tennis</label><br>
         <label><input type="checkbox" name="q7" value="9"> Volleyball</label><br>
-        <label><input type="checkbox" name="q7" value="97" id="Q7OtherOption"> Other</label><br>
-        <label><input type="checkbox" name="q7" value="98"> None</label>
-    </div>
-    <div id="showQ7OtherTextBox" style="display: none;">
-        <label for="q7os">Please specify:</label>
-        <input type="text" id="q7os" name="q7os">
-        <br>
+        <label>
+            <input type="checkbox" name="q7" value="97" id="Q7OtherOption"> Other
+            <input type="text" id="q7os" placeholder="Please specify" name="q7os" style="margin-left: 10px; display: none;">
+        </label><br>
+        <label><input type="checkbox" name="q7" value="98" id="Q7NoneOption"> None</label>
     </div>
 
     <p>Q8. What is your age?</p>
@@ -203,6 +195,7 @@
 <footer th:replace="partials/partials.html :: footer" />
 
 <script th:src="@{/js/handleOtherSpecify.js}"></script>
+<script th:src="@{/js/handleNoneOptions.js}"></script>
 
 </body>
 </html>
