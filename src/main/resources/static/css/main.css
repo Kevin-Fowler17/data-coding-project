@@ -5,19 +5,5 @@ body {
     color: #F8F9FA;
 }
 
- table {
-     width: 100%;
-     border-collapse: collapse;
- }
 
-th, td {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid black;
-}
-
-input[type="radio"] {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
 }

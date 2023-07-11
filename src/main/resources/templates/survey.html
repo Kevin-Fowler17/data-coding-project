@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <header th:insert="partials/partials :: header" />
     <title>Survey</title>
 
 </head>
 <body onload="randomizeOptions()">
+
+<nav th:replace="partials/partials :: navbar" />
 
 <form>
     <p>Q1. What is your favorite color?</p>
@@ -17,21 +19,19 @@
         <label><input type="radio" name="q1" value="5"> Red</label><br>
         <label><input type="radio" name="q1" value="6"> Violet</label><br>
         <label><input type="radio" name="q1" value="7"> Yellow</label><br>
-        <label><input type="radio" name="q1" value="97"> Other</label><br>
+        <label><input type="radio" name="q1" value="97" id="Q1OtherOption"> Other</label><br>
     </div>
-    <div id="otherTextBox" style="display: ">
+    <div id="showQ1OtherTextBox" style="display: none">
         <label for="q1os">Please specify:</label>
-        <input type="text" id="q1os" name="otherText">
+        <input type="text" id="q1os" name="q1os">
+        <br><br>
     </div>
 
-    <br><br>
-
-    <div id="showQ2" style="display: ;">
+    <div id="showQ2" style="display: none;">
         <label for="q2">Q2. Why is "insert color" your favorite color?</label><br><br>
         <textarea id="q2" name="q2"></textarea>
+        <br>
     </div>
-
-    <br>
 
     <p>Q3. What other colors do you like?</p>
     <div>
@@ -42,15 +42,14 @@
         <label><input type="checkbox" name="q3" value="5"> Red</label><br>
         <label><input type="checkbox" name="q3" value="6"> Violet</label><br>
         <label><input type="checkbox" name="q3" value="7"> Yellow</label><br>
-        <label><input type="checkbox" name="q3" value="97" id="otherOption"> Other</label><br>
+        <label><input type="checkbox" name="q3" value="97" id="Q3OtherOption"> Other</label><br>
         <label><input type="checkbox" name="q3" value="98"> None</label>
     </div>
-    <div id="otherTextBox" style="display: ;">
-        <label for="otherText">Please specify:</label>
-        <input type="text" id="otherText" name="otherText">
+    <div id="showQ3OtherTextBox" style="display: none;">
+        <label for="q3os">Please specify:</label>
+        <input type="text" id="q3os" name="q3os">
+        <br>
     </div>
-
-    <br>
 
     <p>Q4. Rate the following colors ... </p>
     <div id="ratingsContainer">
@@ -126,9 +125,8 @@
             <input type="radio" name="q4_97" value="4">
             <input type="radio" name="q4_97" value="5">
         </div>
+        <br>
     </div>
-
-    <br>
 
     <p>Q5. What is your favorite sport?</p>
     <div>
@@ -141,21 +139,19 @@
         <label><input type="radio" name="q5" value="7"> Soccer</label><br>
         <label><input type="radio" name="q5" value="8"> Tennis</label><br>
         <label><input type="radio" name="q5" value="9"> Volleyball</label><br>
-        <label><input type="radio" name="q5" value="97"> Other</label><br>
+        <label><input type="radio" name="q5" value="97" id="Q5OtherOption"> Other</label><br>
     </div>
-    <div id="otherTextBox" style="display: ">
+    <div id="showQ5OtherTextBox" style="display: none;">
         <label for="q5os">Please specify:</label>
         <input type="text" id="q5os" name="q5os">
+        <br><br>
     </div>
 
-    <br><br>
-
-    <div id="showQ6" style="display: ;">
+    <div id="showQ6" style="display: none;">
         <label for="q6">Q6. Why is "insert sport" your favorite sport?</label><br><br>
         <textarea id="q6" name="q6"></textarea>
+        <br>
     </div>
-
-    <br>
 
     <p>Q7. What other sports do you like?</p>
     <div>
@@ -168,15 +164,14 @@
         <label><input type="checkbox" name="q7" value="7"> Soccer</label><br>
         <label><input type="checkbox" name="q7" value="8"> Tennis</label><br>
         <label><input type="checkbox" name="q7" value="9"> Volleyball</label><br>
-        <label><input type="checkbox" name="q7" value="97" id="otherOption"> Other</label><br>
+        <label><input type="checkbox" name="q7" value="97" id="Q7OtherOption"> Other</label><br>
         <label><input type="checkbox" name="q7" value="98"> None</label>
     </div>
-    <div id="otherTextBox" style="display: ;">
-        <label for="otherText">Please specify:</label>
-        <input type="text" id="otherText" name="otherText">
+    <div id="showQ7OtherTextBox" style="display: none;">
+        <label for="q7os">Please specify:</label>
+        <input type="text" id="q7os" name="q7os">
+        <br>
     </div>
-
-    <br>
 
     <p>Q8. What is your age?</p>
     <input type="number" id="ageInput" name="q8" min="18" max="99" required>
@@ -204,6 +199,10 @@
     <input type="submit" value="Submit">
 
 </form>
+
+<footer th:replace="partials/partials.html :: footer" />
+
+<script th:src="@{/js/handleOtherSpecify.js}"></script>
 
 </body>
 </html>
