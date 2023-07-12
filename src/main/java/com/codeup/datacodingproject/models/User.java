@@ -24,11 +24,6 @@ public class User {
 
     @Column(nullable = false, length = 100)
     private String password;
-    private String matchingPassword;
-
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    @ToString.Exclude
-//    private List<Post> posts;
 
     public User(User copy) {
         id = copy.id;
