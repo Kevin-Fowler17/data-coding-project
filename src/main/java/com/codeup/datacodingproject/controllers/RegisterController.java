@@ -30,6 +30,10 @@ public class RegisterController {
     @PostMapping("/register")
     public String addUser(@ModelAttribute User user, Model model, HttpSession session) {
 
+        System.out.println("***********************");
+        System.out.println(user);
+        System.out.println("***********************");
+
         User userNameCheck = userDao.findByUsername(user.getUsername());
         User userEmailCheck = userDao.findByEmail(user.getEmail());
 
@@ -44,7 +48,7 @@ public class RegisterController {
         }
 
         if (userNameCheck != null || userEmailCheck != null) {
-            return "users/registration";
+            return "users/register";
         }
 
         String hash = passwordEncoder.encode(user.getPassword());
