@@ -65,7 +65,28 @@
         // label1.innerHTML = quiz.answers.a;
 
 
+        divFormCheck1.appendChild(input1);
+        divFormCheck1.appendChild(label1);
 
+        // divFormCheck2.appendChild(input2);
+        // divFormCheck2.appendChild(label2);
+        //
+        // divFormCheck3.appendChild(input3);
+        // divFormCheck3.appendChild(label3);
+        //
+        // divFormCheck4.appendChild(input4);
+        // divFormCheck4.appendChild(label4);
+
+        divRadioGroup.appendChild(divFormCheck1);
+        // divRadioGroup.appendChild(divFormCheck2);
+        // divRadioGroup.appendChild(divFormCheck3);
+        // divRadioGroup.appendChild(divFormCheck4);
+
+        surveyQuestion.appendChild(label);
+
+        surveyQuestion.appendChild(divRadioGroup);
+
+        // displayQuiz.appendChild(quizQuestion);
 
 
 
