@@ -23,9 +23,22 @@
     let q7VarNames = [];
     let q8VarNames = [];
     let q9VarNames = [];
-    let q10VarNames = [];
+    let q10Layout = [];
 
-    // Arrays to store the answer options for each question
+    // Arrays to store the question text and answer options for each question
+    let questionText = [
+        {'value': 1, 'label': 'What is your favorite color?'},
+        {'value': 2, 'label': 'Why is "insert color" your favorite color?'},
+        {'value': 3, 'label': 'What other colors do you like?'},
+        {'value': 4, 'label': 'Rate the following colors ... '},
+        {'value': 5, 'label': 'What is your favorite sport?'},
+        {'value': 6, 'label': 'Why is "insert sport" your favorite sport?'},
+        {'value': 7, 'label': 'What other sports do you like?'},
+        {'value': 8, 'label': 'What is your age?'},
+        {'value': 9, 'label': 'What is your gender?'},
+        {'value': 10, 'label': 'What is your income?'},
+    ]
+
     let colorArray = [
         {'value': 1, 'label': 'Blue'},
         {'value': 2, 'label': 'Green'},
@@ -85,44 +98,16 @@
     // renderQ7(7)
     // renderQ8(8)
     // renderQ9(9)
-    renderQ10(10)
+    renderQ10(9)
 
     function renderQ10(questionNumber) {
         
-        generateVariablesToCreateHTML();
+        generateHTMLLayout(q10Layout, incomeArray);
 
-        const firstVariable = q10VarNames[0];
-        const secondVariable = q10VarNames[1];
-        const thirdVariable = q10VarNames[2];
+        customizeHTMLLayout(q10Layout, questionNumber, incomeArray);
 
-        console.log(firstVariable);
-        console.log(secondVariable);
-        console.log(thirdVariable);
+        console.log(q10Layout)
 
-        // let surveyQuestion = document.createElement("div");
-        // let questionLabel = document.createElement("label");
-        // let divRadioGroup = document.createElement("div");
-        // let divFormCheck1 = document.createElement("div");
-        // let input1 = document.createElement("input");
-        // let label1 = document.createElement("label");
-        // let divFormCheck2 = document.createElement("div");
-        // let input2 = document.createElement("input");
-        // let label2 = document.createElement("label");
-        // let divFormCheck3 = document.createElement("div");
-        // let input3 = document.createElement("input");
-        // let label3 = document.createElement("label");
-        // let divFormCheck4 = document.createElement("div");
-        // let input4 = document.createElement("input");
-        // let label4 = document.createElement("label");
-        // let divFormCheck5 = document.createElement("div");
-        // let input5 = document.createElement("input");
-        // let label5 = document.createElement("label");
-        // let divFormCheck6 = document.createElement("div");
-        // let input6 = document.createElement("input");
-        // let label6 = document.createElement("label");
-        // let divFormCheck99 = document.createElement("div");
-        // let input99 = document.createElement("input");
-        // let label99 = document.createElement("label");
 
         // surveyQuestion.className = "survey-question";
         //
@@ -216,7 +201,7 @@
         // label99.className = "form-check-label";
         // label99.setAttribute("for", "radio_" + questionNumber + "_6");
         // label99.innerHTML = incomeArray[6].label;
-        //
+
         // divFormCheck1.appendChild(input1);
         // divFormCheck1.appendChild(label1);
         //
@@ -255,34 +240,181 @@
     }
     
 
-    function generateVariablesToCreateHTML() {
+    function generateHTMLLayout(layoutName, answerArray) {
 
         let surveyQuestion = document.createElement("div");
         let questionLabel = document.createElement("label");
         let divRadioGroup = document.createElement("div");
 
-        q10VarNames.push(`surveyQuestion`, `questionLabel`, `divRadioGroup`);
+        layoutName.push(surveyQuestion, questionLabel, divRadioGroup);
 
-        for (let i = 0; i < incomeArray.length; i++) {
+        for (let i = 0; i < answerArray.length; i++) {
             // Create the div element
             let divFormCheck = document.createElement("div");
-            divFormCheck.id = `divFormCheck${incomeArray[i].value}`;
-            console.log(divFormCheck)
 
             // Create the input element
             let input = document.createElement("input");
-            input.id = `input${incomeArray[i].value}`;
 
             // Create the label element
             let label = document.createElement("label");
-            label.id = `label${incomeArray[i].value}`;
 
-            // Append the elements to the document or do any other operations
+            // Store the values in the array
+            layoutName.push(divFormCheck, input, label);
+        }
+    }
 
-            // Store the variable names in the array
-            q10VarNames.push(`divFormCheck${incomeArray[i].value}`, `input${incomeArray[i].value}`, `label${incomeArray[i].value}`);
+    function customizeHTMLLayout(layoutName, questionNumber, answerArray) {
 
+        let layoutStartingPosition = 3;
+
+        layoutName[0].className = "survey-question";
+
+        layoutName[1].className = "pb-2 pt-3"
+        layoutName[1].setAttribute("for", "radio-group");
+        layoutName[1].innerHTML = "Q" + questionText[questionNumber].value + ". " + questionText[questionNumber].label;
+
+        layoutName[2].className = "";
+        layoutName[2].setAttribute("id", "radio-group")
+
+        for (let i = 0; i < answerArray.length; i++) {
+
+            layoutName[layoutStartingPosition].className = "form-check pb-2";
+
+            layoutName[layoutStartingPosition + 1].setAttribute("type", "radio");
+            layoutName[layoutStartingPosition + 1].className = "form-check-input";
+            layoutName[layoutStartingPosition + 1].setAttribute("id", "radio_" + questionNumber + i);
+            layoutName[layoutStartingPosition + 1].setAttribute("name", "q" + questionNumber)
+            layoutName[layoutStartingPosition + 1].setAttribute("value", "a");
+
+            layoutName[layoutStartingPosition + 2].className = "form-check-label";
+            layoutName[layoutStartingPosition + 2].setAttribute("for", "radio_" + questionNumber + i);
+            layoutName[layoutStartingPosition + 2].innerHTML = answerArray[i].label;
+
+            layoutStartingPosition += 3;
         }
     }
 
 })();
+
+
+
+
+// let surveyQuestion = document.createElement("div");
+// let questionLabel = document.createElement("label");
+// let divRadioGroup = document.createElement("div");
+// let divFormCheck1 = document.createElement("div");
+// let input1 = document.createElement("input");
+// let label1 = document.createElement("label");
+// let divFormCheck2 = document.createElement("div");
+// let input2 = document.createElement("input");
+// let label2 = document.createElement("label");
+// let divFormCheck3 = document.createElement("div");
+// let input3 = document.createElement("input");
+// let label3 = document.createElement("label");
+// let divFormCheck4 = document.createElement("div");
+// let input4 = document.createElement("input");
+// let label4 = document.createElement("label");
+// let divFormCheck5 = document.createElement("div");
+// let input5 = document.createElement("input");
+// let label5 = document.createElement("label");
+// let divFormCheck6 = document.createElement("div");
+// let input6 = document.createElement("input");
+// let label6 = document.createElement("label");
+// let divFormCheck99 = document.createElement("div");
+// let input99 = document.createElement("input");
+// let label99 = document.createElement("label");
+
+
+
+// q10Layout[0].className = "survey-question";
+//
+// q10Layout[1].className = "pb-2 pt-3"
+// q10Layout[1].setAttribute("for", "radio-group");
+// q10Layout[1].innerHTML = "Q" + questionText[questionNumber].value + ". " + questionText[questionNumber].label;
+//
+// q10Layout[2].className = "";
+// q10Layout[2].setAttribute("id", "radio-group")
+//
+// q10Layout[3].className = "form-check pb-2";
+//
+// q10Layout[4].setAttribute("type", "radio");
+// q10Layout[4].className = "form-check-input";
+// q10Layout[4].setAttribute("id", "radio_" + questionNumber + "_0");
+// q10Layout[4].setAttribute("name", "q" + questionNumber)
+// q10Layout[4].setAttribute("value", "a");
+//
+// q10Layout[5].className = "form-check-label";
+// q10Layout[5].setAttribute("for", "radio_" + questionNumber + "_0");
+// q10Layout[5].innerHTML = incomeArray[0].label;
+//
+// q10Layout[6].className = "form-check pb-2";
+//
+// q10Layout[7].setAttribute("type", "radio");
+// q10Layout[7].className = "form-check-input";
+// q10Layout[7].setAttribute("id", "radio_" + questionNumber + "_1");
+// q10Layout[7].setAttribute("name", "q" + questionNumber)
+// q10Layout[7].setAttribute("value", "a");
+//
+// q10Layout[8].className = "form-check-label";
+// q10Layout[8].setAttribute("for", "radio_" + questionNumber + "_1");
+// q10Layout[8].innerHTML = incomeArray[1].label;
+//
+// q10Layout[9].className = "form-check pb-2";
+//
+// q10Layout[10].setAttribute("type", "radio");
+// q10Layout[10].className = "form-check-input";
+// q10Layout[10].setAttribute("id", "radio_" + questionNumber + "_2");
+// q10Layout[10].setAttribute("name", "q" + questionNumber)
+// q10Layout[10].setAttribute("value", "a");
+//
+// q10Layout[11].className = "form-check-label";
+// q10Layout[11].setAttribute("for", "radio_" + questionNumber + "_2");
+// q10Layout[11].innerHTML = incomeArray[2].label;
+//
+// q10Layout[12].className = "form-check pb-2";
+//
+// q10Layout[13].setAttribute("type", "radio");
+// q10Layout[13].className = "form-check-input";
+// q10Layout[13].setAttribute("id", "radio_" + questionNumber + "_3");
+// q10Layout[13].setAttribute("name", "q" + questionNumber)
+// q10Layout[13].setAttribute("value", "a");
+//
+// q10Layout[14].className = "form-check-label";
+// q10Layout[14].setAttribute("for", "radio_" + questionNumber + "_3");
+// q10Layout[14].innerHTML = incomeArray[3].label;
+//
+// q10Layout[15].className = "form-check pb-2";
+//
+// q10Layout[16].setAttribute("type", "radio");
+// q10Layout[16].className = "form-check-input";
+// q10Layout[16].setAttribute("id", "radio_" + questionNumber + "_4");
+// q10Layout[16].setAttribute("name", "q" + questionNumber)
+// q10Layout[16].setAttribute("value", "a");
+//
+// q10Layout[17].className = "form-check-label";
+// q10Layout[17].setAttribute("for", "radio_" + questionNumber + "_4");
+// q10Layout[17].innerHTML = incomeArray[4].label;
+//
+// q10Layout[18].className = "form-check pb-2";
+//
+// q10Layout[19].setAttribute("type", "radio");
+// q10Layout[19].className = "form-check-input";
+// q10Layout[19].setAttribute("id", "radio_" + questionNumber + "_5");
+// q10Layout[19].setAttribute("name", "q" + questionNumber)
+// q10Layout[19].setAttribute("value", "a");
+//
+// q10Layout[20].className = "form-check-label";
+// q10Layout[20].setAttribute("for", "radio_" + questionNumber + "_5");
+// q10Layout[20].innerHTML = incomeArray[5].label;
+//
+// q10Layout[21].className = "form-check pb-2";
+//
+// q10Layout[22].setAttribute("type", "radio");
+// q10Layout[22].className = "form-check-input";
+// q10Layout[22].setAttribute("id", "radio_" + questionNumber + "_6");
+// q10Layout[22].setAttribute("name", "q" + questionNumber)
+// q10Layout[22].setAttribute("value", "a");
+//
+// q10Layout[23].className = "form-check-label";
+// q10Layout[23].setAttribute("for", "radio_" + questionNumber + "_6");
+// q10Layout[23].innerHTML = incomeArray[6].label;
