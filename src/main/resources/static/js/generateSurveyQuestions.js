@@ -36,7 +36,7 @@
         {'value': 7, 'label': 'What other sports do you like?'},
         {'value': 8, 'label': 'What is your age?'},
         {'value': 9, 'label': 'What is your gender?'},
-        {'value': 10, 'label': 'What is your income?'},
+        {'value': 10, 'label': 'What is your income?'}
     ]
 
     let colorArray = [
@@ -66,9 +66,7 @@
         {'value': 6, 'label': 'Hockey'},
         {'value': 7, 'label': 'Soccer'},
         {'value': 8, 'label': 'Tennis'},
-        {'value': 9, 'label': 'Volleyball'},
-        {'value': 97, 'label': 'Other'},
-        {'value': 98, 'label': 'None'}
+        {'value': 9, 'label': 'Volleyball'}
     ];
 
     let genderArray = [
@@ -82,9 +80,10 @@
         {'value': 3, 'label': '$35,000 to $49,999'},
         {'value': 4, 'label': '$50,000 to $74,999'},
         {'value': 5, 'label': '$75,000 to $99,999'},
-        {'value': 6, 'label': '$100,000 or more'},
-        // {'value': 99, 'label': 'Refused'}
+        {'value': 6, 'label': '$100,000 or more'}
     ];
+
+    let workingArray = [];
 
     // generate survey questions
     renderQ1(0)
@@ -100,30 +99,36 @@
 
     function renderQ1(questionArrayPosition) {
         generateHTMLLayout(q1Layout, colorArray, true, false, false);
-        customizeHTMLLayout(q1Layout, questionArrayPosition, colorArray);
-        appendElementsToDoc(q1Layout, colorArray, displayQ1);
+        customizeHTMLLayout(q1Layout, questionArrayPosition, workingArray);
+        appendElementsToDoc(q1Layout, workingArray, displayQ1);
     }
 
     function renderQ5(questionArrayPosition) {
-        generateHTMLLayout(q5Layout, sportsArray);
-        customizeHTMLLayout(q5Layout, questionArrayPosition, sportsArray);
-        appendElementsToDoc(q5Layout, sportsArray, displayQ5);
+        generateHTMLLayout(q5Layout, sportsArray, true, false, false);
+        customizeHTMLLayout(q5Layout, questionArrayPosition, workingArray);
+        appendElementsToDoc(q5Layout, workingArray, displayQ5);
     }
 
     function renderQ9(questionArrayPosition) {
-        generateHTMLLayout(q9Layout, genderArray);
-        customizeHTMLLayout(q9Layout, questionArrayPosition, genderArray);
-        appendElementsToDoc(q9Layout, genderArray, displayQ9);
+        generateHTMLLayout(q9Layout, genderArray, false, false, false);
+        customizeHTMLLayout(q9Layout, questionArrayPosition, workingArray);
+        appendElementsToDoc(q9Layout, workingArray, displayQ9);
     }
 
     function renderQ10(questionArrayPosition) {
-        generateHTMLLayout(q10Layout, incomeArray);
-        customizeHTMLLayout(q10Layout, questionArrayPosition, incomeArray);
-        appendElementsToDoc(q10Layout, incomeArray, displayQ10);
+        generateHTMLLayout(q10Layout, incomeArray, false, false, true);
+        customizeHTMLLayout(q10Layout, questionArrayPosition, workingArray);
+        appendElementsToDoc(q10Layout, workingArray, displayQ10);
     }
     
 
     function generateHTMLLayout(layoutName, answerArray, otherOption, noneOption, refusedOption) {
+
+        workingArray = answerArray.slice();
+
+        otherOption && workingArray.push({'value': 97, 'label': 'Other'});
+        noneOption && workingArray.push({'value': 98, 'label': 'None'});
+        refusedOption && workingArray.push({'value': 99, 'label': 'Refused'});
 
         let surveyQuestion = document.createElement("div");
         let questionLabel = document.createElement("label");
@@ -131,52 +136,7 @@
 
         layoutName.push(surveyQuestion, questionLabel, divRadioGroup);
 
-        for (let i = 0; i < answerArray.length; i++) {
-            // Create the div element
-            let divFormCheck = document.createElement("div");
-
-            // Create the input element
-            let input = document.createElement("input");
-
-            // Create the label element
-            let label = document.createElement("label");
-
-            // Store the values in the array
-            layoutName.push(divFormCheck, input, label);
-        }
-
-        if (otherOption = true) {
-            // Create the div element
-            let divFormCheck = document.createElement("div");
-
-            // Create the input element
-            let input1 = document.createElement("input");
-
-            // Create the label element
-            let label = document.createElement("label");
-
-            // Create the input element
-            let input2 = document.createElement("input");
-
-            // Store the values in the array
-            layoutName.push(divFormCheck, input1, label, input2);
-        }
-
-        if (noneOption = true) {
-            // Create the div element
-            let divFormCheck = document.createElement("div");
-
-            // Create the input element
-            let input = document.createElement("input");
-
-            // Create the label element
-            let label = document.createElement("label");
-
-            // Store the values in the array
-            layoutName.push(divFormCheck, input, label);
-        }
-
-        if (refusedOption = true) {
+        for (let i = 0; i < workingArray.length; i++) {
             // Create the div element
             let divFormCheck = document.createElement("div");
 
@@ -223,6 +183,7 @@
     }
 
     function appendElementsToDoc(layoutName, answerArray, displayQuestion) {
+
         let layoutStartingPosition = 3;
 
         for (let i = 0; i < answerArray.length; i++) {
@@ -238,6 +199,8 @@
         layoutName[0].appendChild(layoutName[2]);
 
         displayQuestion.appendChild(layoutName[0]);
+
+        workingArray = [];
     }
 
 })();
