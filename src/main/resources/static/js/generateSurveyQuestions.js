@@ -100,107 +100,13 @@
     // renderQ9(9)
     renderQ10(9)
 
-    function renderQ10(questionNumber) {
+    function renderQ10(questionArrayPosition) {
         
         generateHTMLLayout(q10Layout, incomeArray);
 
-        customizeHTMLLayout(q10Layout, questionNumber, incomeArray);
+        customizeHTMLLayout(q10Layout, questionArrayPosition, incomeArray);
 
         console.log(q10Layout)
-
-
-        // surveyQuestion.className = "survey-question";
-        //
-        // questionLabel.className = "pb-2 pt-3"
-        // questionLabel.setAttribute("for", "radio-group");
-        // questionLabel.innerHTML = "Q10. What is your income?";
-        //
-        // divRadioGroup.className = "";
-        // divRadioGroup.setAttribute("id", "radio-group")
-        //
-        // divFormCheck1.className = "form-check pb-2";
-        //
-        // input1.setAttribute("type", "radio");
-        // input1.className = "form-check-input";
-        // input1.setAttribute("id", "radio_" + questionNumber + "_0");
-        // input1.setAttribute("name", "q" + questionNumber)
-        // input1.setAttribute("value", "a");
-        //
-        // label1.className = "form-check-label";
-        // label1.setAttribute("for", "radio_" + questionNumber + "_0");
-        // label1.innerHTML = incomeArray[0].label;
-        //
-        // divFormCheck2.className = "form-check pb-2";
-        //
-        // input2.setAttribute("type", "radio");
-        // input2.className = "form-check-input";
-        // input2.setAttribute("id", "radio_" + questionNumber + "_1");
-        // input2.setAttribute("name", "q" + questionNumber)
-        // input2.setAttribute("value", "a");
-        //
-        // label2.className = "form-check-label";
-        // label2.setAttribute("for", "radio_" + questionNumber + "_1");
-        // label2.innerHTML = incomeArray[1].label;
-        //
-        // divFormCheck3.className = "form-check pb-2";
-        //
-        // input3.setAttribute("type", "radio");
-        // input3.className = "form-check-input";
-        // input3.setAttribute("id", "radio_" + questionNumber + "_2");
-        // input3.setAttribute("name", "q" + questionNumber)
-        // input3.setAttribute("value", "a");
-        //
-        // label3.className = "form-check-label";
-        // label3.setAttribute("for", "radio_" + questionNumber + "_2");
-        // label3.innerHTML = incomeArray[2].label;
-        //
-        // divFormCheck4.className = "form-check pb-2";
-        //
-        // input4.setAttribute("type", "radio");
-        // input4.className = "form-check-input";
-        // input4.setAttribute("id", "radio_" + questionNumber + "_3");
-        // input4.setAttribute("name", "q" + questionNumber)
-        // input4.setAttribute("value", "a");
-        //
-        // label4.className = "form-check-label";
-        // label4.setAttribute("for", "radio_" + questionNumber + "_3");
-        // label4.innerHTML = incomeArray[3].label;
-        //
-        // divFormCheck5.className = "form-check pb-2";
-        //
-        // input5.setAttribute("type", "radio");
-        // input5.className = "form-check-input";
-        // input5.setAttribute("id", "radio_" + questionNumber + "_4");
-        // input5.setAttribute("name", "q" + questionNumber)
-        // input5.setAttribute("value", "a");
-        //
-        // label5.className = "form-check-label";
-        // label5.setAttribute("for", "radio_" + questionNumber + "_4");
-        // label5.innerHTML = incomeArray[4].label;
-        //
-        // divFormCheck6.className = "form-check pb-2";
-        //
-        // input6.setAttribute("type", "radio");
-        // input6.className = "form-check-input";
-        // input6.setAttribute("id", "radio_" + questionNumber + "_5");
-        // input6.setAttribute("name", "q" + questionNumber)
-        // input6.setAttribute("value", "a");
-        //
-        // label6.className = "form-check-label";
-        // label6.setAttribute("for", "radio_" + questionNumber + "_5");
-        // label6.innerHTML = incomeArray[5].label;
-        //
-        // divFormCheck99.className = "form-check pb-2";
-        //
-        // input99.setAttribute("type", "radio");
-        // input99.className = "form-check-input";
-        // input99.setAttribute("id", "radio_" + questionNumber + "_6");
-        // input99.setAttribute("name", "q" + questionNumber)
-        // input99.setAttribute("value", "a");
-        //
-        // label99.className = "form-check-label";
-        // label99.setAttribute("for", "radio_" + questionNumber + "_6");
-        // label99.innerHTML = incomeArray[6].label;
 
         // divFormCheck1.appendChild(input1);
         // divFormCheck1.appendChild(label1);
@@ -263,7 +169,7 @@
         }
     }
 
-    function customizeHTMLLayout(layoutName, questionNumber, answerArray) {
+    function customizeHTMLLayout(layoutName, questionArrayPosition, answerArray) {
 
         let layoutStartingPosition = 3;
 
@@ -271,7 +177,7 @@
 
         layoutName[1].className = "pb-2 pt-3"
         layoutName[1].setAttribute("for", "radio-group");
-        layoutName[1].innerHTML = "Q" + questionText[questionNumber].value + ". " + questionText[questionNumber].label;
+        layoutName[1].innerHTML = "Q" + questionText[questionArrayPosition].value + ". " + questionText[questionArrayPosition].label;
 
         layoutName[2].className = "";
         layoutName[2].setAttribute("id", "radio-group")
@@ -282,12 +188,12 @@
 
             layoutName[layoutStartingPosition + 1].setAttribute("type", "radio");
             layoutName[layoutStartingPosition + 1].className = "form-check-input";
-            layoutName[layoutStartingPosition + 1].setAttribute("id", "radio_" + questionNumber + i);
-            layoutName[layoutStartingPosition + 1].setAttribute("name", "q" + questionNumber)
-            layoutName[layoutStartingPosition + 1].setAttribute("value", "a");
+            layoutName[layoutStartingPosition + 1].setAttribute("id", "radio_" + questionText[questionArrayPosition].value + "_" + i);
+            layoutName[layoutStartingPosition + 1].setAttribute("name", "q" + questionText[questionArrayPosition].value)
+            layoutName[layoutStartingPosition + 1].setAttribute("value", answerArray[i].value);
 
             layoutName[layoutStartingPosition + 2].className = "form-check-label";
-            layoutName[layoutStartingPosition + 2].setAttribute("for", "radio_" + questionNumber + i);
+            layoutName[layoutStartingPosition + 2].setAttribute("for", "radio_" + questionText[questionArrayPosition].value + "_" + i);
             layoutName[layoutStartingPosition + 2].innerHTML = answerArray[i].label;
 
             layoutStartingPosition += 3;
