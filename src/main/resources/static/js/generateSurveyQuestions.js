@@ -10,19 +10,19 @@
     // const displayQ6 = document.getElementsByClassName("q6")[0];
     // const displayQ7 = document.getElementsByClassName("q7")[0];
     // const displayQ8 = document.getElementsByClassName("q8")[0];
-    // const displayQ9 = document.getElementsByClassName("q9")[0];
+    const displayQ9 = document.getElementsByClassName("q9")[0];
     const displayQ10 = document.getElementsByClassName("q10")[0];
 
     // Arrays to store the variable names for each question
-    let q1VarNames = [];
-    let q2VarNames = [];
-    let q3VarNames = [];
-    let q4VarNames = [];
-    let q5VarNames = [];
-    let q6VarNames = [];
-    let q7VarNames = [];
-    let q8VarNames = [];
-    let q9VarNames = [];
+    let q1Layout = [];
+    let q2Layout = [];
+    let q3Layout = [];
+    let q4Layout = [];
+    let q5Layout = [];
+    let q6Layout = [];
+    let q7Layout = [];
+    let q8Layout = [];
+    let q9Layout = [];
     let q10Layout = [];
 
     // Arrays to store the question text and answer options for each question
@@ -89,59 +89,30 @@
     ];
 
     // generate survey questions
-    // renderQ1(1)
-    // renderQ2(2)
-    // renderQ3(3)
-    // renderQ4(4)
-    // renderQ5(5)
-    // renderQ6(6)
-    // renderQ7(7)
-    // renderQ8(8)
-    // renderQ9(9)
+    // renderQ1(0)
+    // renderQ2(1)
+    // renderQ3(2)
+    // renderQ4(3)
+    // renderQ5(4)
+    // renderQ6(5)
+    // renderQ7(6)
+    // renderQ8(7)
+    renderQ9(8)
     renderQ10(9)
 
+    function renderQ9(questionArrayPosition) {
+
+        generateHTMLLayout(q9Layout, genderArray);
+        customizeHTMLLayout(q9Layout, questionArrayPosition, genderArray);
+        appendElementsToDoc(q9Layout, genderArray, displayQ9);
+
+    }
+
     function renderQ10(questionArrayPosition) {
-        
+
         generateHTMLLayout(q10Layout, incomeArray);
-
         customizeHTMLLayout(q10Layout, questionArrayPosition, incomeArray);
-
-        console.log(q10Layout)
-
-        // divFormCheck1.appendChild(input1);
-        // divFormCheck1.appendChild(label1);
-        //
-        // divFormCheck2.appendChild(input2);
-        // divFormCheck2.appendChild(label2);
-        //
-        // divFormCheck3.appendChild(input3);
-        // divFormCheck3.appendChild(label3);
-        //
-        // divFormCheck4.appendChild(input4);
-        // divFormCheck4.appendChild(label4);
-        //
-        // divFormCheck5.appendChild(input5);
-        // divFormCheck5.appendChild(label5);
-        //
-        // divFormCheck6.appendChild(input6);
-        // divFormCheck6.appendChild(label6);
-        //
-        // divFormCheck99.appendChild(input99);
-        // divFormCheck99.appendChild(label99);
-        //
-        // divRadioGroup.appendChild(divFormCheck1);
-        // divRadioGroup.appendChild(divFormCheck2);
-        // divRadioGroup.appendChild(divFormCheck3);
-        // divRadioGroup.appendChild(divFormCheck4);
-        // divRadioGroup.appendChild(divFormCheck5);
-        // divRadioGroup.appendChild(divFormCheck6);
-        // divRadioGroup.appendChild(divFormCheck99);
-        //
-        // surveyQuestion.appendChild(questionLabel);
-        //
-        // surveyQuestion.appendChild(divRadioGroup);
-        //
-        // displayQ10.appendChild(surveyQuestion);
+        appendElementsToDoc(q10Layout, incomeArray, displayQ10);
 
     }
     
@@ -198,6 +169,28 @@
 
             layoutStartingPosition += 3;
         }
+    }
+
+    function appendElementsToDoc(layoutName, answerArray, displayQuestion) {
+
+        let layoutStartingPosition = 3;
+
+        for (let i = 0; i < answerArray.length; i++) {
+
+            layoutName[layoutStartingPosition].appendChild(layoutName[layoutStartingPosition + 1]);
+            layoutName[layoutStartingPosition].appendChild(layoutName[layoutStartingPosition + 2]);
+
+            layoutName[2].appendChild(layoutName[layoutStartingPosition]);
+
+            layoutStartingPosition += 3;
+
+        }
+
+        layoutName[0].appendChild(layoutName[1]);
+
+        layoutName[0].appendChild(layoutName[2]);
+
+        displayQuestion.appendChild(layoutName[0]);
     }
 
 })();
@@ -324,3 +317,40 @@
 // q10Layout[23].className = "form-check-label";
 // q10Layout[23].setAttribute("for", "radio_" + questionNumber + "_6");
 // q10Layout[23].innerHTML = incomeArray[6].label;
+
+
+
+// divFormCheck1.appendChild(input1);
+// divFormCheck1.appendChild(label1);
+//
+// divFormCheck2.appendChild(input2);
+// divFormCheck2.appendChild(label2);
+//
+// divFormCheck3.appendChild(input3);
+// divFormCheck3.appendChild(label3);
+//
+// divFormCheck4.appendChild(input4);
+// divFormCheck4.appendChild(label4);
+//
+// divFormCheck5.appendChild(input5);
+// divFormCheck5.appendChild(label5);
+//
+// divFormCheck6.appendChild(input6);
+// divFormCheck6.appendChild(label6);
+//
+// divFormCheck99.appendChild(input99);
+// divFormCheck99.appendChild(label99);
+//
+// divRadioGroup.appendChild(divFormCheck1);
+// divRadioGroup.appendChild(divFormCheck2);
+// divRadioGroup.appendChild(divFormCheck3);
+// divRadioGroup.appendChild(divFormCheck4);
+// divRadioGroup.appendChild(divFormCheck5);
+// divRadioGroup.appendChild(divFormCheck6);
+// divRadioGroup.appendChild(divFormCheck99);
+//
+// surveyQuestion.appendChild(questionLabel);
+//
+// surveyQuestion.appendChild(divRadioGroup);
+//
+// displayQ10.appendChild(surveyQuestion);
