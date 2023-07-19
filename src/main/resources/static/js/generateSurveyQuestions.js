@@ -3,11 +3,11 @@
 (function () {
 
     const displayQ1 = document.getElementsByClassName("q1")[0];
-    // const displayQ2 = document.getElementsByClassName("q2")[0];
+    const displayQ2 = document.getElementsByClassName("q2")[0];
     const displayQ3 = document.getElementsByClassName("q3")[0];
     // const displayQ4 = document.getElementsByClassName("q4")[0];
     const displayQ5 = document.getElementsByClassName("q5")[0];
-    // const displayQ6 = document.getElementsByClassName("q6")[0];
+    const displayQ6 = document.getElementsByClassName("q6")[0];
     const displayQ7 = document.getElementsByClassName("q7")[0];
     // const displayQ8 = document.getElementsByClassName("q8")[0];
     const displayQ9 = document.getElementsByClassName("q9")[0];
@@ -87,11 +87,11 @@
 
     // generate survey questions
     renderQ1(0)
-    // renderQ2(1)
+    renderQ2(1)
     renderQ3(2)
     // renderQ4(3)
     renderQ5(4)
-    // renderQ6(5)
+    renderQ6(5)
     renderQ7(6)
     // renderQ8(7)
     renderQ9(8)
@@ -101,42 +101,54 @@
         generateHTMLLayoutForSRandMR(q1Layout, colorArray, true,false, false);
         customizeHTMLLayoutForSRandMR(q1Layout, questionArrayPosition, workingArray,true);
         addInputBoxForOther(q1Layout);
-        appendElementsToDoc(q1Layout, workingArray, displayQ1);
+        appendElementsToDocForSRandMR(q1Layout, workingArray, displayQ1);
+    }
+
+    function renderQ2(questionArrayPosition) {
+        generateHTMLLayoutForOpenEnd(q2Layout);
+        customizeHTMLLayoutForOpenEnd(q2Layout, questionArrayPosition);
+        appendElementsToDocForOpenEnd(q2Layout, displayQ2);
     }
 
     function renderQ3 (questionArrayPosition) {
         generateHTMLLayoutForSRandMR(q3Layout, colorArray, true, true, false);
         customizeHTMLLayoutForSRandMR(q3Layout, questionArrayPosition, workingArray,false);
         addInputBoxForOther(q3Layout);
-        appendElementsToDoc(q3Layout, workingArray, displayQ3);
+        appendElementsToDocForSRandMR(q3Layout, workingArray, displayQ3);
     }
 
     function renderQ5(questionArrayPosition) {
         generateHTMLLayoutForSRandMR(q5Layout, sportsArray,true,false,false);
         customizeHTMLLayoutForSRandMR(q5Layout, questionArrayPosition, workingArray,true);
         addInputBoxForOther(q5Layout);
-        appendElementsToDoc(q5Layout, workingArray, displayQ5);
+        appendElementsToDocForSRandMR(q5Layout, workingArray, displayQ5);
+    }
+
+    function renderQ6(questionArrayPosition) {
+        generateHTMLLayoutForOpenEnd(q6Layout);
+        customizeHTMLLayoutForOpenEnd(q6Layout, questionArrayPosition);
+        appendElementsToDocForOpenEnd(q6Layout, displayQ6);
     }
 
     function renderQ7 (questionArrayPosition) {
         generateHTMLLayoutForSRandMR(q7Layout, sportsArray, true, true, false);
         customizeHTMLLayoutForSRandMR(q7Layout, questionArrayPosition, workingArray,false);
         addInputBoxForOther(q7Layout);
-        appendElementsToDoc(q7Layout, workingArray, displayQ7);
+        appendElementsToDocForSRandMR(q7Layout, workingArray, displayQ7);
     }
 
     function renderQ9(questionArrayPosition) {
         generateHTMLLayoutForSRandMR(q9Layout, genderArray,false,false,false);
         customizeHTMLLayoutForSRandMR(q9Layout, questionArrayPosition, workingArray,true);
         addInputBoxForOther(q9Layout);
-        appendElementsToDoc(q9Layout, workingArray, displayQ9);
+        appendElementsToDocForSRandMR(q9Layout, workingArray, displayQ9);
     }
 
     function renderQ10(questionArrayPosition) {
         generateHTMLLayoutForSRandMR(q10Layout, incomeArray,false,false,true);
         customizeHTMLLayoutForSRandMR(q10Layout, questionArrayPosition, workingArray,true);
         addInputBoxForOther(q10Layout);
-        appendElementsToDoc(q10Layout, workingArray, displayQ10);
+        appendElementsToDocForSRandMR(q10Layout, workingArray, displayQ10);
     }
     
 
@@ -169,6 +181,18 @@
         }
     }
 
+    function generateHTMLLayoutForOpenEnd(layoutName) {
+
+        let surveyQuestion = document.createElement("div");
+        let questionLabel = document.createElement("label");
+        let divRadioGroup = document.createElement("div");
+        let divFormCheck = document.createElement("div");
+        let textarea = document.createElement("textarea");
+
+        // Store the values in the array
+        layoutName.push(surveyQuestion, questionLabel, divRadioGroup, divFormCheck, textarea);
+    }
+
     function customizeHTMLLayoutForSRandMR(layoutName, questionArrayPosition, answerArray, singleType) {
 
         let layoutStartingPosition = 3;
@@ -185,12 +209,13 @@
 
         layoutName[0].className = "survey-question";
 
-        layoutName[1].className = "pb-2 pt-3"
+        layoutName[1].className = "pb-2 pt-3";
         layoutName[1].setAttribute("for", groupType);
         layoutName[1].innerHTML = "Q" + questionText[questionArrayPosition].value + ". " + questionText[questionArrayPosition].label;
 
         layoutName[2].className = "";
-        layoutName[2].setAttribute("id", groupType)
+        layoutName[2].setAttribute("class", groupType);
+        layoutName[2].setAttribute("id", groupType + "_" + (questionArrayPosition + 1));
 
         for (let i = 0; i < answerArray.length; i++) {
 
@@ -198,7 +223,7 @@
 
             layoutName[layoutStartingPosition + 1].setAttribute("type", questionType);
             layoutName[layoutStartingPosition + 1].className = "form-check-input";
-            layoutName[layoutStartingPosition + 1].setAttribute("id",questionType+ "_" + questionText[questionArrayPosition].value + "_" + i);
+            layoutName[layoutStartingPosition + 1].setAttribute("id",questionType + "_" + questionText[questionArrayPosition].value + "_" + i);
             layoutName[layoutStartingPosition + 1].setAttribute("name","q" + questionText[questionArrayPosition].value)
             layoutName[layoutStartingPosition + 1].setAttribute("value", answerArray[i].value);
 
@@ -208,6 +233,26 @@
 
             layoutStartingPosition += 3;
         }
+    }
+
+    function customizeHTMLLayoutForOpenEnd(layoutName, questionArrayPosition) {
+
+        layoutName[0].className = "survey-question";
+
+        layoutName[1].className = "pb-2 pt-3";
+        layoutName[1].setAttribute("for", "textarea");
+        layoutName[1].innerHTML = "Q" + questionText[questionArrayPosition].value + ". " + questionText[questionArrayPosition].label;
+
+        layoutName[2].className = "";
+        layoutName[2].setAttribute("class", "textarea");
+        layoutName[2].setAttribute("id", "textarea" + "_" + (questionArrayPosition + 1));
+
+        layoutName[3].className = "form-textarea pb-2";
+
+        layoutName[4].setAttribute("type", "textarea");
+        layoutName[4].className = "form-textarea-input";
+        layoutName[4].setAttribute("id","textarea_" + questionText[questionArrayPosition].value + "_");
+        layoutName[4].setAttribute("name","q" + questionText[questionArrayPosition].value)
     }
 
     function addInputBoxForOther(layoutName) {
@@ -225,7 +270,7 @@
         });
     }
 
-    function appendElementsToDoc(layoutName, answerArray, displayQuestion) {
+    function appendElementsToDocForSRandMR(layoutName, answerArray, displayQuestion) {
 
         let layoutStartingPosition = 3;
 
@@ -244,6 +289,26 @@
         displayQuestion.appendChild(layoutName[0]);
 
         workingArray = [];
+    }
+
+    function appendElementsToDocForOpenEnd(layoutName, displayQuestion) {
+        console.log("we got in")
+
+        console.log("1")
+        layoutName[3].appendChild(layoutName[4]);
+        console.log("2")
+        // layoutName[3].appendChild(layoutName[5]);
+
+        console.log("3")
+        layoutName[2].appendChild(layoutName[3]);
+
+        console.log("4")
+        layoutName[0].appendChild(layoutName[1]);
+        console.log("5")
+        layoutName[0].appendChild(layoutName[2]);
+
+        console.log("6")
+        displayQuestion.appendChild(layoutName[0]);
     }
 
 })();
