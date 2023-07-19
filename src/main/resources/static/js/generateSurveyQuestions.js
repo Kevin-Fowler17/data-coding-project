@@ -100,24 +100,28 @@
     function renderQ1(questionArrayPosition) {
         generateHTMLLayout(q1Layout, colorArray, true, false, false);
         customizeHTMLLayout(q1Layout, questionArrayPosition, workingArray);
+        addInputBoxForOther(q1Layout);
         appendElementsToDoc(q1Layout, workingArray, displayQ1);
     }
 
     function renderQ5(questionArrayPosition) {
         generateHTMLLayout(q5Layout, sportsArray, true, false, false);
         customizeHTMLLayout(q5Layout, questionArrayPosition, workingArray);
+        addInputBoxForOther(q5Layout);
         appendElementsToDoc(q5Layout, workingArray, displayQ5);
     }
 
     function renderQ9(questionArrayPosition) {
         generateHTMLLayout(q9Layout, genderArray, false, false, false);
         customizeHTMLLayout(q9Layout, questionArrayPosition, workingArray);
+        addInputBoxForOther(q9Layout);
         appendElementsToDoc(q9Layout, workingArray, displayQ9);
     }
 
     function renderQ10(questionArrayPosition) {
         generateHTMLLayout(q10Layout, incomeArray, false, false, true);
         customizeHTMLLayout(q10Layout, questionArrayPosition, workingArray);
+        addInputBoxForOther(q10Layout);
         appendElementsToDoc(q10Layout, workingArray, displayQ10);
     }
     
@@ -180,6 +184,21 @@
 
             layoutStartingPosition += 3;
         }
+    }
+
+    function addInputBoxForOther(layoutName) {
+
+        layoutName.forEach((element, index) => {
+            if (element.textContent === "Other") {
+
+                // Create a new element to be inserted
+                let otherInputBox = document.createElement("input");
+                otherInputBox.setAttribute("type", "text");
+
+                // Insert the new element after the element with "Other"
+                layoutName[index].appendChild(otherInputBox);
+            }
+        });
     }
 
     function appendElementsToDoc(layoutName, answerArray, displayQuestion) {
