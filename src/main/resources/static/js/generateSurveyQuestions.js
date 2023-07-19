@@ -4,11 +4,11 @@
 
     const displayQ1 = document.getElementsByClassName("q1")[0];
     // const displayQ2 = document.getElementsByClassName("q2")[0];
-    // const displayQ3 = document.getElementsByClassName("q3")[0];
+    const displayQ3 = document.getElementsByClassName("q3")[0];
     // const displayQ4 = document.getElementsByClassName("q4")[0];
     const displayQ5 = document.getElementsByClassName("q5")[0];
     // const displayQ6 = document.getElementsByClassName("q6")[0];
-    // const displayQ7 = document.getElementsByClassName("q7")[0];
+    const displayQ7 = document.getElementsByClassName("q7")[0];
     // const displayQ8 = document.getElementsByClassName("q8")[0];
     const displayQ9 = document.getElementsByClassName("q9")[0];
     const displayQ10 = document.getElementsByClassName("q10")[0];
@@ -88,45 +88,59 @@
     // generate survey questions
     renderQ1(0)
     // renderQ2(1)
-    // renderQ3(2)
+    renderQ3(2)
     // renderQ4(3)
     renderQ5(4)
     // renderQ6(5)
-    // renderQ7(6)
+    renderQ7(6)
     // renderQ8(7)
     renderQ9(8)
     renderQ10(9)
 
     function renderQ1(questionArrayPosition) {
-        generateHTMLLayout(q1Layout, colorArray, true, false, false);
-        customizeHTMLLayout(q1Layout, questionArrayPosition, workingArray);
+        generateHTMLLayoutForSRandMR(q1Layout, colorArray, true,false, false);
+        customizeHTMLLayoutForSRandMR(q1Layout, questionArrayPosition, workingArray,true);
         addInputBoxForOther(q1Layout);
         appendElementsToDoc(q1Layout, workingArray, displayQ1);
     }
 
+    function renderQ3 (questionArrayPosition) {
+        generateHTMLLayoutForSRandMR(q3Layout, colorArray, true, true, false);
+        customizeHTMLLayoutForSRandMR(q3Layout, questionArrayPosition, workingArray,false);
+        addInputBoxForOther(q3Layout);
+        appendElementsToDoc(q3Layout, workingArray, displayQ3);
+    }
+
     function renderQ5(questionArrayPosition) {
-        generateHTMLLayout(q5Layout, sportsArray, true, false, false);
-        customizeHTMLLayout(q5Layout, questionArrayPosition, workingArray);
+        generateHTMLLayoutForSRandMR(q5Layout, sportsArray,true,false,false);
+        customizeHTMLLayoutForSRandMR(q5Layout, questionArrayPosition, workingArray,true);
         addInputBoxForOther(q5Layout);
         appendElementsToDoc(q5Layout, workingArray, displayQ5);
     }
 
+    function renderQ7 (questionArrayPosition) {
+        generateHTMLLayoutForSRandMR(q7Layout, sportsArray, true, true, false);
+        customizeHTMLLayoutForSRandMR(q7Layout, questionArrayPosition, workingArray,false);
+        addInputBoxForOther(q7Layout);
+        appendElementsToDoc(q7Layout, workingArray, displayQ7);
+    }
+
     function renderQ9(questionArrayPosition) {
-        generateHTMLLayout(q9Layout, genderArray, false, false, false);
-        customizeHTMLLayout(q9Layout, questionArrayPosition, workingArray);
+        generateHTMLLayoutForSRandMR(q9Layout, genderArray,false,false,false);
+        customizeHTMLLayoutForSRandMR(q9Layout, questionArrayPosition, workingArray,true);
         addInputBoxForOther(q9Layout);
         appendElementsToDoc(q9Layout, workingArray, displayQ9);
     }
 
     function renderQ10(questionArrayPosition) {
-        generateHTMLLayout(q10Layout, incomeArray, false, false, true);
-        customizeHTMLLayout(q10Layout, questionArrayPosition, workingArray);
+        generateHTMLLayoutForSRandMR(q10Layout, incomeArray,false,false,true);
+        customizeHTMLLayoutForSRandMR(q10Layout, questionArrayPosition, workingArray,true);
         addInputBoxForOther(q10Layout);
         appendElementsToDoc(q10Layout, workingArray, displayQ10);
     }
     
 
-    function generateHTMLLayout(layoutName, answerArray, otherOption, noneOption, refusedOption) {
+    function generateHTMLLayoutForSRandMR(layoutName, answerArray, otherOption, noneOption, refusedOption) {
 
         workingArray = answerArray.slice();
 
@@ -155,31 +169,41 @@
         }
     }
 
-    function customizeHTMLLayout(layoutName, questionArrayPosition, answerArray) {
+    function customizeHTMLLayoutForSRandMR(layoutName, questionArrayPosition, answerArray, singleType) {
 
         let layoutStartingPosition = 3;
+        let groupType = "";
+        let questionType = "";
+
+        if (singleType) {
+            groupType = "radio-group";
+            questionType = "radio";
+        } else {
+            groupType = "checkbox-group";
+            questionType = "checkbox";
+        }
 
         layoutName[0].className = "survey-question";
 
         layoutName[1].className = "pb-2 pt-3"
-        layoutName[1].setAttribute("for", "radio-group");
+        layoutName[1].setAttribute("for", groupType);
         layoutName[1].innerHTML = "Q" + questionText[questionArrayPosition].value + ". " + questionText[questionArrayPosition].label;
 
         layoutName[2].className = "";
-        layoutName[2].setAttribute("id", "radio-group")
+        layoutName[2].setAttribute("id", groupType)
 
         for (let i = 0; i < answerArray.length; i++) {
 
             layoutName[layoutStartingPosition].className = "form-check pb-2";
 
-            layoutName[layoutStartingPosition + 1].setAttribute("type", "radio");
+            layoutName[layoutStartingPosition + 1].setAttribute("type", questionType);
             layoutName[layoutStartingPosition + 1].className = "form-check-input";
-            layoutName[layoutStartingPosition + 1].setAttribute("id", "radio_" + questionText[questionArrayPosition].value + "_" + i);
-            layoutName[layoutStartingPosition + 1].setAttribute("name", "q" + questionText[questionArrayPosition].value)
+            layoutName[layoutStartingPosition + 1].setAttribute("id",questionType+ "_" + questionText[questionArrayPosition].value + "_" + i);
+            layoutName[layoutStartingPosition + 1].setAttribute("name","q" + questionText[questionArrayPosition].value)
             layoutName[layoutStartingPosition + 1].setAttribute("value", answerArray[i].value);
 
             layoutName[layoutStartingPosition + 2].className = "form-check-label";
-            layoutName[layoutStartingPosition + 2].setAttribute("for", "radio_" + questionText[questionArrayPosition].value + "_" + i);
+            layoutName[layoutStartingPosition + 2].setAttribute("for",questionType + "_" + questionText[questionArrayPosition].value + "_" + i);
             layoutName[layoutStartingPosition + 2].innerHTML = answerArray[i].label;
 
             layoutStartingPosition += 3;
