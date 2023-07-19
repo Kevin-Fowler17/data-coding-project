@@ -5,7 +5,7 @@
     const displayQ1 = document.getElementsByClassName("q1")[0];
     const displayQ2 = document.getElementsByClassName("q2")[0];
     const displayQ3 = document.getElementsByClassName("q3")[0];
-    // const displayQ4 = document.getElementsByClassName("q4")[0];
+    const displayQ4 = document.getElementsByClassName("q4")[0];
     const displayQ5 = document.getElementsByClassName("q5")[0];
     const displayQ6 = document.getElementsByClassName("q6")[0];
     const displayQ7 = document.getElementsByClassName("q7")[0];
@@ -49,7 +49,7 @@
         {'value': 7, 'label': 'Yellow'}
     ];
 
-    let ColorRatingArray = [
+    let ratingArray = [
         {'value': 1, 'label': 'A'},
         {'value': 2, 'label': 'B'},
         {'value': 3, 'label': 'C'},
@@ -84,12 +84,14 @@
     ];
 
     let workingArray = [];
+    let workingRowArray = [];
+    let workingColumnArray = [];
 
     // generate survey questions
     renderQ1(0)
     renderQ2(1)
     renderQ3(2)
-    // renderQ4(3)
+    renderQ4(3)
     renderQ5(4)
     renderQ6(5)
     renderQ7(6)
@@ -115,6 +117,12 @@
         customizeHTMLLayoutForSRandMR(q3Layout, questionArrayPosition, workingArray,false);
         addInputBoxForOther(q3Layout);
         appendElementsToDocForSRandMR(q3Layout, workingArray, displayQ3);
+    }
+
+    function renderQ4(questionArrayPosition) {
+        generateHTMLLayoutForRating(q4Layout, colorArray, ratingArray);
+        // customizeHTMLLayoutForRating(q4Layout, questionArrayPosition, workingArray);
+        // appendElementsToDocForRating(q4Layout, workingArray, displayQ4);
     }
 
     function renderQ5(questionArrayPosition) {
@@ -157,7 +165,6 @@
         addInputBoxForOther(q10Layout);
         appendElementsToDocForSRandMR(q10Layout, workingArray, displayQ10);
     }
-    
 
     function generateHTMLLayoutForSRandMR(layoutName, answerArray, otherOption, noneOption, refusedOption) {
 
@@ -210,6 +217,32 @@
 
         // Store the values in the array
         layoutName.push(surveyQuestion, questionLabel, divRadioGroup, divFormCheck, input);
+    }
+
+    function generateHTMLLayoutForRating(layoutName, rowArray, columnArray) {
+
+        workingRowArray = rowArray.slice();
+        workingColumnArray = columnArray.slice();
+
+        let surveyQuestion = document.createElement("div");
+        let questionLabel = document.createElement("label");
+        let divRadioGroup = document.createElement("div");
+
+        layoutName.push(surveyQuestion, questionLabel, divRadioGroup);
+
+        for (let i = 0; i < workingArray.length; i++) {
+            // Create the div element
+            let divFormCheck = document.createElement("div");
+
+            // Create the input element
+            let input = document.createElement("input");
+
+            // Create the label element
+            let label = document.createElement("label");
+
+            // Store the values in the array
+            layoutName.push(divFormCheck, input, label);
+        }
     }
 
     function customizeHTMLLayoutForSRandMR(layoutName, questionArrayPosition, answerArray, singleType) {
