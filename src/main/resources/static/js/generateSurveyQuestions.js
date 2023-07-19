@@ -9,7 +9,7 @@
     const displayQ5 = document.getElementsByClassName("q5")[0];
     const displayQ6 = document.getElementsByClassName("q6")[0];
     const displayQ7 = document.getElementsByClassName("q7")[0];
-    // const displayQ8 = document.getElementsByClassName("q8")[0];
+    const displayQ8 = document.getElementsByClassName("q8")[0];
     const displayQ9 = document.getElementsByClassName("q9")[0];
     const displayQ10 = document.getElementsByClassName("q10")[0];
 
@@ -93,7 +93,7 @@
     renderQ5(4)
     renderQ6(5)
     renderQ7(6)
-    // renderQ8(7)
+    renderQ8(7)
     renderQ9(8)
     renderQ10(9)
 
@@ -110,7 +110,7 @@
         appendElementsToDocForOpenEnd(q2Layout, displayQ2);
     }
 
-    function renderQ3 (questionArrayPosition) {
+    function renderQ3(questionArrayPosition) {
         generateHTMLLayoutForSRandMR(q3Layout, colorArray, true, true, false);
         customizeHTMLLayoutForSRandMR(q3Layout, questionArrayPosition, workingArray,false);
         addInputBoxForOther(q3Layout);
@@ -130,11 +130,18 @@
         appendElementsToDocForOpenEnd(q6Layout, displayQ6);
     }
 
-    function renderQ7 (questionArrayPosition) {
+    function renderQ7(questionArrayPosition) {
         generateHTMLLayoutForSRandMR(q7Layout, sportsArray, true, true, false);
         customizeHTMLLayoutForSRandMR(q7Layout, questionArrayPosition, workingArray,false);
         addInputBoxForOther(q7Layout);
         appendElementsToDocForSRandMR(q7Layout, workingArray, displayQ7);
+    }
+
+    function renderQ8(questionArrayPosition) {
+        generateHTMLLayoutForNumeric(q8Layout);
+        customizeHTMLLayoutForNumeric(q8Layout, questionArrayPosition);
+        appendElementsToDocForOpenEnd(q8Layout, displayQ8);
+        console.log(q8Layout)
     }
 
     function renderQ9(questionArrayPosition) {
@@ -191,6 +198,18 @@
 
         // Store the values in the array
         layoutName.push(surveyQuestion, questionLabel, divRadioGroup, divFormCheck, textarea);
+    }
+
+    function generateHTMLLayoutForNumeric(layoutName) {
+
+        let surveyQuestion = document.createElement("div");
+        let questionLabel = document.createElement("label");
+        let divRadioGroup = document.createElement("div");
+        let divFormCheck = document.createElement("div");
+        let input = document.createElement("input");
+
+        // Store the values in the array
+        layoutName.push(surveyQuestion, questionLabel, divRadioGroup, divFormCheck, input);
     }
 
     function customizeHTMLLayoutForSRandMR(layoutName, questionArrayPosition, answerArray, singleType) {
@@ -251,7 +270,27 @@
 
         layoutName[4].setAttribute("type", "textarea");
         layoutName[4].className = "form-textarea-input";
-        layoutName[4].setAttribute("id","textarea_" + questionText[questionArrayPosition].value + "_");
+        layoutName[4].setAttribute("id","textarea_" + questionText[questionArrayPosition].value);
+        layoutName[4].setAttribute("name","q" + questionText[questionArrayPosition].value)
+    }
+
+    function customizeHTMLLayoutForNumeric(layoutName, questionArrayPosition) {
+
+        layoutName[0].className = "survey-question";
+
+        layoutName[1].className = "pb-2 pt-3";
+        layoutName[1].setAttribute("for", "numeric");
+        layoutName[1].innerHTML = "Q" + questionText[questionArrayPosition].value + ". " + questionText[questionArrayPosition].label;
+
+        layoutName[2].className = "";
+        layoutName[2].setAttribute("class", "numeric");
+        layoutName[2].setAttribute("id", "numeric" + "_" + (questionArrayPosition + 1));
+
+        layoutName[3].className = "form-numeric pb-2";
+
+        layoutName[4].setAttribute("type", "number");
+        layoutName[4].className = "form-numeric-input";
+        layoutName[4].setAttribute("id","numeric_" + questionText[questionArrayPosition].value);
         layoutName[4].setAttribute("name","q" + questionText[questionArrayPosition].value)
     }
 
@@ -292,22 +331,14 @@
     }
 
     function appendElementsToDocForOpenEnd(layoutName, displayQuestion) {
-        console.log("we got in")
 
-        console.log("1")
         layoutName[3].appendChild(layoutName[4]);
-        console.log("2")
-        // layoutName[3].appendChild(layoutName[5]);
 
-        console.log("3")
         layoutName[2].appendChild(layoutName[3]);
 
-        console.log("4")
         layoutName[0].appendChild(layoutName[1]);
-        console.log("5")
         layoutName[0].appendChild(layoutName[2]);
 
-        console.log("6")
         displayQuestion.appendChild(layoutName[0]);
     }
 
