@@ -50,11 +50,12 @@
     ];
 
     let ratingArray = [
-        {'value': 1, 'label': 'A'},
-        {'value': 2, 'label': 'B'},
-        {'value': 3, 'label': 'C'},
-        {'value': 4, 'label': 'D'},
-        {'value': 5, 'label': 'E'}
+        '',
+        'A',
+        'B',
+        'C',
+        'D',
+        'E'
     ];
 
     let sportsArray = [
@@ -120,9 +121,10 @@
     }
 
     function renderQ4(questionArrayPosition) {
-        generateHTMLLayoutForRating(q4Layout, colorArray, ratingArray);
+        generateHTMLLayoutForRating(q4Layout, colorArray, ratingArray, true);
         // customizeHTMLLayoutForRating(q4Layout, questionArrayPosition, workingArray);
         // appendElementsToDocForRating(q4Layout, workingArray, displayQ4);
+        console.log(q4Layout)
     }
 
     function renderQ5(questionArrayPosition) {
@@ -149,7 +151,6 @@
         generateHTMLLayoutForNumeric(q8Layout);
         customizeHTMLLayoutForNumeric(q8Layout, questionArrayPosition);
         appendElementsToDocForOpenEnd(q8Layout, displayQ8);
-        console.log(q8Layout)
     }
 
     function renderQ9(questionArrayPosition) {
@@ -219,30 +220,47 @@
         layoutName.push(surveyQuestion, questionLabel, divRadioGroup, divFormCheck, input);
     }
 
-    function generateHTMLLayoutForRating(layoutName, rowArray, columnArray) {
+    function generateHTMLLayoutForRating(layoutName, rowArray, columnArray, otherOption) {
 
         workingRowArray = rowArray.slice();
         workingColumnArray = columnArray.slice();
 
+        otherOption && workingRowArray.push({'value': 97, 'label': 'Other'});
+
+        console.log(workingArray)
+
         let surveyQuestion = document.createElement("div");
         let questionLabel = document.createElement("label");
-        let divRadioGroup = document.createElement("div");
+        let divRatingsGroup = document.createElement("div");
+        layoutName.push(surveyQuestion, questionLabel, divRatingsGroup);
 
-        layoutName.push(surveyQuestion, questionLabel, divRadioGroup);
+        let divRatingsLabels = document.createElement("div");
+        layoutName.push(divRatingsLabels);
 
-        for (let i = 0; i < workingArray.length; i++) {
-            // Create the div element
-            let divFormCheck = document.createElement("div");
-
-            // Create the input element
-            let input = document.createElement("input");
-
+        // Create the label elements for the columns
+        for (let i = 0; i < workingColumnArray.length; i++) {
             // Create the label element
             let label = document.createElement("label");
 
             // Store the values in the array
+            layoutName.push(label);
+        }
+
+        // Create the row items for rating
+        for (let i = 0; i < workingRowArray.length; i++) {
+            // Create the div element
+            let divFormCheck = document.createElement("div");
+
+            // Create the label element
+            let label = document.createElement("label");
+
+            // Create the input element
+            let input = document.createElement("input");
+
+            // Store the values in the array
             layoutName.push(divFormCheck, input, label);
         }
+
     }
 
     function customizeHTMLLayoutForSRandMR(layoutName, questionArrayPosition, answerArray, singleType) {
