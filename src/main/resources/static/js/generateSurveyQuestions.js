@@ -50,12 +50,12 @@
     ];
 
     let ratingArray = [
-        '',
-        'A',
-        'B',
-        'C',
-        'D',
-        'E'
+        {'value': 0, 'label': ''},
+        {'value': 1, 'label': 'A'},
+        {'value': 2, 'label': 'B'},
+        {'value': 3, 'label': 'C'},
+        {'value': 4, 'label': 'D'},
+        {'value': 5, 'label': 'E'}
     ];
 
     let sportsArray = [
@@ -122,7 +122,7 @@
 
     function renderQ4(questionArrayPosition) {
         generateHTMLLayoutForRating(q4Layout, colorArray, ratingArray, true);
-        // customizeHTMLLayoutForRating(q4Layout, questionArrayPosition, workingArray);
+        customizeHTMLLayoutForRating(q4Layout, questionArrayPosition, workingRowArray, workingColumnArray);
         // appendElementsToDocForRating(q4Layout, workingArray, displayQ4);
         console.log(q4Layout)
     }
@@ -226,8 +226,6 @@
         workingColumnArray = columnArray.slice();
 
         otherOption && workingRowArray.push({'value': 97, 'label': 'Other'});
-
-        console.log(workingArray)
 
         let surveyQuestion = document.createElement("div");
         let questionLabel = document.createElement("label");
@@ -343,6 +341,47 @@
         layoutName[4].className = "form-numeric-input";
         layoutName[4].setAttribute("id","numeric_" + questionText[questionArrayPosition].value);
         layoutName[4].setAttribute("name","q" + questionText[questionArrayPosition].value)
+    }
+
+    function customizeHTMLLayoutForRating(layoutName, questionArrayPosition, answerRowArray, answerColumnArray) {
+
+        let layoutStartingPosition = 4;
+
+        layoutName[0].className = "survey-question";
+
+        layoutName[1].className = "pb-2 pt-3";
+        layoutName[1].setAttribute("for", "ratings-group");
+        layoutName[1].innerHTML = "Q" + questionText[questionArrayPosition].value + ". " + questionText[questionArrayPosition].label;
+
+        layoutName[2].className = "";
+        layoutName[2].setAttribute("class", "ratings-group");
+        layoutName[2].setAttribute("id", "ratings-group_" + (questionArrayPosition + 1));
+
+        layoutName[3].className = "ratings-labels";
+
+        for (let  i = 0; i < answerColumnArray.length; i++) {
+            layoutName[layoutStartingPosition].className = "form-check pb-2";
+            layoutName[layoutStartingPosition].innerHTML = answerColumnArray[i].label;
+
+            layoutStartingPosition += 1;
+        }
+
+        for (let i = 0; i < answerRowArray.length; i++) {
+
+            layoutName[layoutStartingPosition].className = "form-check pb-2";
+
+            layoutName[layoutStartingPosition + 1].className = "form-check-label";
+            layoutName[layoutStartingPosition + 1].setAttribute("for","radio_" + questionText[questionArrayPosition].value + "_" + i);
+            layoutName[layoutStartingPosition + 1].innerHTML = answerRowArray[i].label;
+
+            layoutName[layoutStartingPosition + 2].setAttribute("type", "radio");
+            layoutName[layoutStartingPosition + 2].className = "form-check-input";
+            layoutName[layoutStartingPosition + 2].setAttribute("id","radio_" + questionText[questionArrayPosition].value + "_" + i);
+            layoutName[layoutStartingPosition + 2].setAttribute("name","q" + questionText[questionArrayPosition].value)
+            layoutName[layoutStartingPosition + 2].setAttribute("value", answerRowArray[i].value);
+
+            layoutStartingPosition += 3;
+        }
     }
 
     function addInputBoxForOther(layoutName) {
