@@ -122,7 +122,7 @@
 
     function renderQ4(questionArrayPosition) {
         generateHTMLLayoutForRating(q4Layout, colorArray, ratingArray, true);
-        // customizeHTMLLayoutForRating(q4Layout, questionArrayPosition, workingRowArray, workingColumnArray);
+        customizeHTMLLayoutForRating(q4Layout, questionArrayPosition, workingRowArray, workingColumnArray);
         // appendElementsToDocForRating(q4Layout, workingArray, displayQ4);
         console.log(q4Layout)
     }
@@ -352,6 +352,7 @@
     function customizeHTMLLayoutForRating(layoutName, questionArrayPosition, answerRowArray, answerColumnArray) {
 
         let layoutStartingPosition = 4;
+        let counter = 1;
 
         layoutName[0].className = "survey-question";
 
@@ -380,13 +381,16 @@
             layoutName[layoutStartingPosition + 1].setAttribute("for","radio_" + questionText[questionArrayPosition].value + "_" + i);
             layoutName[layoutStartingPosition + 1].innerHTML = answerRowArray[i].label;
 
-            layoutName[layoutStartingPosition + 2].setAttribute("type", "radio");
-            layoutName[layoutStartingPosition + 2].className = "form-check-input";
-            layoutName[layoutStartingPosition + 2].setAttribute("id","radio_" + questionText[questionArrayPosition].value + "_" + i);
-            layoutName[layoutStartingPosition + 2].setAttribute("name","q" + questionText[questionArrayPosition].value)
-            layoutName[layoutStartingPosition + 2].setAttribute("value", answerRowArray[i].value);
+            for (let j = 0; j < 5; j++) {
+                layoutName[layoutStartingPosition + (2 + j)].setAttribute("type", "radio");
+                layoutName[layoutStartingPosition + (2 + j)].className = "form-check-input";
+                layoutName[layoutStartingPosition + (2 + j)].setAttribute("id","radio_" + questionText[questionArrayPosition].value + "_" + counter);
+                layoutName[layoutStartingPosition + (2 + j)].setAttribute("name","q" + questionText[questionArrayPosition].value + "_" + counter);
+                layoutName[layoutStartingPosition + (2 + j)].setAttribute("value", j);
+            }
 
-            layoutStartingPosition += 3;
+            layoutStartingPosition += 7;
+            counter += 1;
         }
     }
 
