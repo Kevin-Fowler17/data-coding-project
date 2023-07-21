@@ -122,7 +122,7 @@
 
     function renderQ4(questionArrayPosition) {
         generateHTMLLayoutForRating(q4Layout, colorArray, ratingArray, true);
-        customizeHTMLLayoutForRating(q4Layout, questionArrayPosition, workingRowArray, workingColumnArray);
+        // customizeHTMLLayoutForRating(q4Layout, questionArrayPosition, workingRowArray, workingColumnArray);
         // appendElementsToDocForRating(q4Layout, workingArray, displayQ4);
         console.log(q4Layout)
     }
@@ -252,11 +252,17 @@
             // Create the label element
             let label = document.createElement("label");
 
-            // Create the input element
-            let input = document.createElement("input");
+            // Create the input array to store the inputs
+            let inputs = [];
+
+            // Create the input element and store them in the inputs array
+            for (let j = 1; j < 6; j++) {
+                let input = document.createElement("input");
+                inputs.push(input)
+            }
 
             // Store the values in the array
-            layoutName.push(divFormCheck, input, label);
+            layoutName.push(divFormCheck, label, ...inputs);
         }
 
     }
