@@ -123,7 +123,7 @@
     function renderQ4(questionArrayPosition) {
         generateHTMLLayoutForRating(q4Layout, colorArray, ratingArray, true);
         customizeHTMLLayoutForRating(q4Layout, questionArrayPosition, workingRowArray, workingColumnArray);
-        // appendElementsToDocForRating(q4Layout, workingArray, displayQ4);
+        // appendElementsToDocForRating(q4Layout,  workingRowArray, workingColumnArray, displayQ4);
         console.log(q4Layout)
     }
 
@@ -453,6 +453,47 @@
         layoutName[0].appendChild(layoutName[2]);
 
         displayQuestion.appendChild(layoutName[0]);
+    }
+
+    function appendElementsToDocForRating(layoutName, answerRowArray, answerColumnArray, displayQuestion) {
+
+        let layoutStartingPosition = 4;
+        let counterColumn = 1;
+        let counterRow = 1;
+
+        // Add column labels to the div
+        for (let i = 0; i < answerColumnArray.length; i++) {
+            layoutName[layoutStartingPosition].appendChild(layoutName[layoutStartingPosition + counterColumn]);
+            counterColumn += 1;
+        }
+
+        layoutStartingPosition += counterColumn;
+
+        // Add answer inputs to the label
+        for (let i = 0; i < answerRowArray.length; i++) {
+            layoutName[layoutStartingPosition + 1].appendChild(layoutName[layoutStartingPosition + counterRow + 1]);
+            counterRow += 1;
+        }
+
+        // All label with answer inputs to the div
+        for (let i = 0; i < answerRowArray.length; i++) {
+            layoutName[layoutStartingPosition].appendChild(layoutName[layoutStartingPosition + 1]);
+            layoutStartingPosition = answerColumnArray + 1;
+        }
+
+
+        layoutName[0].appendChild(layoutName[1]);
+        layoutName[0].appendChild(layoutName[2]);
+
+        for (let i = 0; i < answerRowArray.length; i++) {
+            layoutName[0].appendChild(layoutName[]);
+        }
+
+        displayQuestion.appendChild(layoutName[0]);
+
+        workingRowArray = [];
+        workingColumnArray = [];
+
     }
 
 })();
