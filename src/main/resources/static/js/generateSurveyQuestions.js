@@ -123,7 +123,7 @@
     function renderQ4(questionArrayPosition) {
         generateHTMLLayoutForRating(q4Layout, colorArray, ratingArray, true);
         customizeHTMLLayoutForRating(q4Layout, questionArrayPosition, workingRowArray, workingColumnArray);
-        // appendElementsToDocForRating(q4Layout,  workingRowArray, workingColumnArray, displayQ4);
+        appendElementsToDocForRating(q4Layout,  workingRowArray, workingColumnArray, displayQ4);
         console.log(q4Layout)
     }
 
@@ -463,31 +463,43 @@
 
         // Add column labels to the div
         for (let i = 0; i < answerColumnArray.length; i++) {
+            console.log("Where are we writing too: " + layoutStartingPosition)
+            console.log("Count for me: " + counterColumn)
             layoutName[layoutStartingPosition].appendChild(layoutName[layoutStartingPosition + counterColumn]);
             counterColumn += 1;
         }
 
+        layoutName[3].appendChild(layoutName[layoutStartingPosition]);
+
         layoutStartingPosition += counterColumn;
 
-        // Add answer inputs to the label
-        for (let i = 0; i < answerRowArray.length; i++) {
-            layoutName[layoutStartingPosition + 1].appendChild(layoutName[layoutStartingPosition + counterRow + 1]);
-            counterRow += 1;
-        }
+        // // Add answer inputs to the label
+        // for (let i = 0; i < answerRowArray.length; i++) {
+        //     layoutName[layoutStartingPosition + 1].appendChild(layoutName[layoutStartingPosition + counterRow + 1]);
+        //     counterRow += 1;
+        // }
 
-        // All label with answer inputs to the div
-        for (let i = 0; i < answerRowArray.length; i++) {
-            layoutName[layoutStartingPosition].appendChild(layoutName[layoutStartingPosition + 1]);
-            layoutStartingPosition = answerColumnArray + 1;
-        }
+        // // All label with answer inputs to the div
+        // for (let i = 0; i < answerRowArray.length; i++) {
+        //     layoutName[layoutStartingPosition].appendChild(layoutName[layoutStartingPosition + 1]);
+        //
+        //     layoutName[3].appendChild(layoutName[layoutStartingPosition]);
+        //
+        //     layoutStartingPosition = answerColumnArray + 1;
+        // }
 
+
+
+
+        // for (let i = 0; i < answerRowArray.length; i++) {
+        //     layoutName[0].appendChild(layoutName[]);
+        // }
+
+        console.log("Where we at:" + layoutStartingPosition)
 
         layoutName[0].appendChild(layoutName[1]);
         layoutName[0].appendChild(layoutName[2]);
-
-        for (let i = 0; i < answerRowArray.length; i++) {
-            layoutName[0].appendChild(layoutName[]);
-        }
+        layoutName[0].appendChild(layoutName[3]);
 
         displayQuestion.appendChild(layoutName[0]);
 
