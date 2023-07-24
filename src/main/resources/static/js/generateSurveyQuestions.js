@@ -378,15 +378,28 @@
             layoutName[layoutStartingPosition].className = "form-check pb-2";
 
             layoutName[layoutStartingPosition + 1].className = "form-check-label";
-            layoutName[layoutStartingPosition + 1].setAttribute("for","radio_" + questionText[questionArrayPosition].value + "_" + i);
+
+            if (layoutName[layoutStartingPosition + 1].textContent !== "Other") {
+                layoutName[layoutStartingPosition + 1].setAttribute("for", "radio_" + questionText[questionArrayPosition].value + "_" + i);
+            } else {
+                layoutName[layoutStartingPosition + 1].setAttribute("for", "radio_" + questionText[questionArrayPosition].value + "_97");
+            }
+
             layoutName[layoutStartingPosition + 1].innerHTML = answerRowArray[i].label;
 
             for (let j = 0; j < 5; j++) {
+
                 layoutName[layoutStartingPosition + (2 + j)].setAttribute("type", "radio");
                 layoutName[layoutStartingPosition + (2 + j)].className = "form-check-input";
-                layoutName[layoutStartingPosition + (2 + j)].setAttribute("id","radio_" + questionText[questionArrayPosition].value + "_" + counter);
-                layoutName[layoutStartingPosition + (2 + j)].setAttribute("name","q" + questionText[questionArrayPosition].value + "_" + counter);
-                layoutName[layoutStartingPosition + (2 + j)].setAttribute("value", j);
+                // layoutName[layoutStartingPosition + (2 + j)].setAttribute("id","radio_" + questionText[questionArrayPosition].value + "_" + counter);
+
+                if (layoutName[layoutStartingPosition + (1 + j)].textContent !== "Other") {
+                    layoutName[layoutStartingPosition + (2 + j)].setAttribute("name", "q" + questionText[questionArrayPosition].value + "_" + counter);
+                } else {
+                    layoutName[layoutStartingPosition + (2 + j)].setAttribute("name", "q" + questionText[questionArrayPosition].value + "_97");
+                }
+
+                layoutName[layoutStartingPosition + (2 + j)].setAttribute("value", j + 1);
             }
 
             layoutStartingPosition += 7;
