@@ -475,18 +475,16 @@
 
             let counterRow = 1;
 
-            // console.log("I: " + i)
-            // console.log("Layout - starting position: " + (layoutStartingPosition + 1))
-
             for (let j = 0; j < (answerColumnArray.length - 1); j++) {
-                // console.log("Child being written: " + (layoutStartingPosition + counterRow + 1))
                 layoutName[layoutStartingPosition + 1].appendChild(layoutName[layoutStartingPosition + counterRow + 1]);
                 counterRow += 1;
             }
 
+            layoutName[layoutStartingPosition].appendChild(layoutName[layoutStartingPosition + 1]);
+
+            layoutName[2].appendChild(layoutName[layoutStartingPosition]);
+
             layoutStartingPosition += (counterRow + 1);
-
-
         }
 
         // // All label with answer inputs to the div
