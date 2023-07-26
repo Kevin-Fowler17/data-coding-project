@@ -470,38 +470,19 @@
 
         layoutStartingPosition += counterColumn;
 
-        // Add answer inputs to the label
+        // Add answer inputs and label to the div
         for (let i = 0; i < answerRowArray.length; i++) {
 
             let counterRow = 1;
 
-            for (let j = 0; j < (answerColumnArray.length - 1); j++) {
-                layoutName[layoutStartingPosition + 1].appendChild(layoutName[layoutStartingPosition + counterRow + 1]);
+            for (let j = 0; j < (answerColumnArray.length); j++) {
+                layoutName[layoutStartingPosition].appendChild(layoutName[layoutStartingPosition + counterRow]);
                 counterRow += 1;
             }
-
-            layoutName[layoutStartingPosition].appendChild(layoutName[layoutStartingPosition + 1]);
-
             layoutName[2].appendChild(layoutName[layoutStartingPosition]);
 
-            layoutStartingPosition += (counterRow + 1);
+            layoutStartingPosition += counterRow;
         }
-
-        // // All label with answer inputs to the div
-        // for (let i = 0; i < answerRowArray.length; i++) {
-        //     layoutName[layoutStartingPosition].appendChild(layoutName[layoutStartingPosition + 1]);
-        //
-        //     layoutName[3].appendChild(layoutName[layoutStartingPosition]);
-        //
-        //     layoutStartingPosition = answerColumnArray + 1;
-        // }
-
-
-
-
-        // for (let i = 0; i < answerRowArray.length; i++) {
-        //     layoutName[0].appendChild(layoutName[]);
-        // }
 
         layoutName[0].appendChild(layoutName[1]);
         layoutName[0].appendChild(layoutName[2]);
