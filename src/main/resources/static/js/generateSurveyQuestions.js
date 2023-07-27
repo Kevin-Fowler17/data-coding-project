@@ -367,7 +367,7 @@
         layoutName[3].className = "ratings-labels";
 
         for (let  i = 0; i < answerColumnArray.length; i++) {
-            layoutName[layoutStartingPosition].className = "form-check pb-2";
+            layoutName[layoutStartingPosition].className = "rating-item pb-2";
             layoutName[layoutStartingPosition].innerHTML = answerColumnArray[i].label;
 
             layoutStartingPosition += 1;
@@ -375,7 +375,7 @@
 
         for (let i = 0; i < answerRowArray.length; i++) {
 
-            layoutName[layoutStartingPosition].className = "form-check pb-2";
+            layoutName[layoutStartingPosition].className = "rating-item pb-2";
 
             layoutName[layoutStartingPosition + 1].className = "form-check-label";
 
