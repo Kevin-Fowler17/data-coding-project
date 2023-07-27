@@ -12,6 +12,7 @@
     const displayQ8 = document.getElementsByClassName("q8")[0];
     const displayQ9 = document.getElementsByClassName("q9")[0];
     const displayQ10 = document.getElementsByClassName("q10")[0];
+    const displayQ11 = document.getElementsByClassName("q11")[0];
 
     // Arrays to store the variable names for each question
     let q1Layout = [];
@@ -24,6 +25,7 @@
     let q8Layout = [];
     let q9Layout = [];
     let q10Layout = [];
+    let q11Layout = [];
 
     // Arrays to store the question text and answer options for each question
     let questionText = [
@@ -34,9 +36,10 @@
         {'value': 5, 'label': 'What is your favorite sport?'},
         {'value': 6, 'label': 'Why is "insert sport" your favorite sport?'},
         {'value': 7, 'label': 'What other sports do you like?'},
-        {'value': 8, 'label': 'What is your age?'},
-        {'value': 9, 'label': 'What is your gender?'},
-        {'value': 10, 'label': 'What is your income?'}
+        {'value': 8, 'label': 'Rate the following sports ... '},
+        {'value': 9, 'label': 'What is your age?'},
+        {'value': 10, 'label': 'What is your gender?'},
+        {'value': 11, 'label': 'What is your income?'}
     ]
 
     let colorArray = [
@@ -99,6 +102,7 @@
     renderQ8(7)
     renderQ9(8)
     renderQ10(9)
+    renderQ11(10)
 
     function renderQ1(questionArrayPosition) {
         generateHTMLLayoutForSRandMR(q1Layout, colorArray, true,false, false);
@@ -148,23 +152,29 @@
     }
 
     function renderQ8(questionArrayPosition) {
-        generateHTMLLayoutForNumeric(q8Layout);
-        customizeHTMLLayoutForNumeric(q8Layout, questionArrayPosition);
-        appendElementsToDocForOpenEnd(q8Layout, displayQ8);
+        generateHTMLLayoutForRating(q8Layout, sportsArray, ratingArray, true);
+        customizeHTMLLayoutForRating(q8Layout, questionArrayPosition, workingRowArray, workingColumnArray);
+        appendElementsToDocForRating(q8Layout,  workingRowArray, workingColumnArray, displayQ8);
     }
 
     function renderQ9(questionArrayPosition) {
-        generateHTMLLayoutForSRandMR(q9Layout, genderArray,false,false,false);
-        customizeHTMLLayoutForSRandMR(q9Layout, questionArrayPosition, workingArray,true);
-        addInputBoxForOther(q9Layout);
-        appendElementsToDocForSRandMR(q9Layout, workingArray, displayQ9);
+        generateHTMLLayoutForNumeric(q9Layout);
+        customizeHTMLLayoutForNumeric(q9Layout, questionArrayPosition);
+        appendElementsToDocForOpenEnd(q9Layout, displayQ9);
     }
 
     function renderQ10(questionArrayPosition) {
-        generateHTMLLayoutForSRandMR(q10Layout, incomeArray,false,false,true);
+        generateHTMLLayoutForSRandMR(q10Layout, genderArray,false,false,false);
         customizeHTMLLayoutForSRandMR(q10Layout, questionArrayPosition, workingArray,true);
         addInputBoxForOther(q10Layout);
         appendElementsToDocForSRandMR(q10Layout, workingArray, displayQ10);
+    }
+
+    function renderQ11(questionArrayPosition) {
+        generateHTMLLayoutForSRandMR(q11Layout, incomeArray,false,false,true);
+        customizeHTMLLayoutForSRandMR(q11Layout, questionArrayPosition, workingArray,true);
+        addInputBoxForOther(q11Layout);
+        appendElementsToDocForSRandMR(q11Layout, workingArray, displayQ11);
     }
 
     function generateHTMLLayoutForSRandMR(layoutName, answerArray, otherOption, noneOption, refusedOption) {
