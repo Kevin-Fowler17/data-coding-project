@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <header th:insert="partials/partials :: header" />
-    <title>Survey</title>
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="partials/partials :: head">
+    <meta charset="UTF-8">
+    <title id="pageTitle">Survey</title>
 </head>
 <body onload="randomizeOptions()">
 
 <nav th:replace="partials/partials :: navbar" />
 
-<form>
+<form class="form-example p-2" th:action="@{/results}" method="post" th:object="${user}">
+
     <div id="q1" class="q1"><!--    insert options here    --></div>
 
     <div id="q2" class="q2"><!--    insert options here    --></div>
@@ -36,17 +36,15 @@
 
     <div id="q7" class="q7"><!--    insert options here    --></div>
 
-    <div id="q8" class="q8"><!--    insert options here    --></div>
-
 <!--    <p>Q8. What is your age? - IGNORE</p>-->
 <!--    <input type="number" id="ageInput" name="q8old" min="18" max="99" required>-->
 <!--    <label for="ageInput"> years</label>-->
 
+    <div id="q8" class="q8"><!--    insert options here    --></div>
+
     <div id="q9" class="q9"><!--    insert options here    --></div>
 
     <div id="q10" class="q10"><!--    insert options here    --></div>
-
-    <div id="q11" class="q11"><!--    insert options here    --></div>
 
     <input type="submit" value="Submit">
 
