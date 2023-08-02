@@ -20,8 +20,8 @@ public class Q10 {
     @Column(nullable = false, columnDefinition = "INT(10)")
     private long q10;
 
-    @ManyToOne
-    @JoinColumn (nullable = false, name = "respondent_id")
-    private Respondent respondent;
+//    @ManyToOne
+//    @JoinColumn (nullable = false, name = "respondent_id")
+//    private Respondent respondent;
 
 }

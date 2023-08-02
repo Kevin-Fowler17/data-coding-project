@@ -9,19 +9,22 @@ import lombok.*;
 @Setter
 @ToString
 @Entity
-@Table(name = "q9")
-public class Q9 {
+@Table(name="survey_answers")
+public class SurveyAnswers {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "INT(10) UNSIGNED")
     private long id;
 
-    @Column(nullable = false, columnDefinition = "INT(10)")
-    private long q9;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "surveyAnswers")
+    @ToString.Exclude
+    private Q1 q1;
 
-//    @ManyToOne
-//    @JoinColumn (nullable = false, name = "respondent_id")
-//    private Respondent respondent;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "surveyAnswers")
+    @ToString.Exclude
+    private Q2 q2;
+
+
 
 }

@@ -20,8 +20,8 @@ public class Q6 {
     @Column(nullable = false)
     private String q6;
 
-    @ManyToOne
-    @JoinColumn (nullable = false, name = "respondent_id")
-    private Respondent respondent;
+//    @ManyToOne
+//    @JoinColumn (nullable = false, name = "respondent_id")
+//    private Respondent respondent;
 
 }

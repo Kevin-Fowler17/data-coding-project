@@ -23,8 +23,12 @@ public class Q1 {
     @Column(nullable = true)
     private String q1os;
 
-    @ManyToOne
-    @JoinColumn (nullable = false, name = "respondent_id")
-    private Respondent respondent;
+    @OneToOne
+    @JoinColumn(name = "survey_answers_id")
+    private SurveyAnswers surveyAnswers;
+
+//    @ManyToOne
+//    @JoinColumn (nullable = false, name = "respondent_id")
+//    private Respondent respondent;
 
 }

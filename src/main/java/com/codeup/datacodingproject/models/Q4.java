@@ -41,8 +41,8 @@ public class Q4 {
     @Column(nullable = true, columnDefinition = "INT(10)")
     private long q4_97;
 
-    @ManyToOne
-    @JoinColumn (nullable = false, name = "respondent_id")
-    private Respondent respondent;
+//    @ManyToOne
+//    @JoinColumn (nullable = false, name = "respondent_id")
+//    private Respondent respondent;
 
 }
