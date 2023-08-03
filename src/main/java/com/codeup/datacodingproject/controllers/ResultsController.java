@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -24,7 +25,17 @@ public class ResultsController {
         System.out.println("**********************");
 
         List<Object[]> q1Percentages = surveyAnswersDao.getQ1AnswerPercentages();
-        model.addAttribute("q1Percentages", q1Percentages);
+
+        // Round the percentages
+        List<Object[]> roundedQ1Percentages = new ArrayList<>();
+        for (Object[] percentage : q1Percentages) {
+            String q1Value = (String) percentage[0];
+            double rawPercentage = (double) percentage[1];
+            double roundedPercentage = Math.round(rawPercentage * 100.0) / 100.0; // Round to 2 decimal places
+            roundedQ1Percentages.add(new Object[] { q1Value, roundedPercentage });
+        }
+
+        model.addAttribute("roundedQ1Percentages", roundedQ1Percentages);
 
         System.out.println("**********************");
         System.out.println(q1Percentages);
