@@ -20,6 +20,10 @@ public class Q9 {
     @Column(nullable = false, columnDefinition = "INT(10)")
     private long q9;
 
+    @OneToOne
+    @JoinColumn(name = "survey_answers_id")
+    private SurveyAnswers surveyAnswers;
+
 //    @ManyToOne
 //    @JoinColumn (nullable = false, name = "respondent_id")
 //    private Respondent respondent;

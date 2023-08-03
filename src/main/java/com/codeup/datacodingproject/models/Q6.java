@@ -20,6 +20,10 @@ public class Q6 {
     @Column(nullable = false)
     private String q6;
 
+    @OneToOne
+    @JoinColumn(name = "survey_answers_id")
+    private SurveyAnswers surveyAnswers;
+
 //    @ManyToOne
 //    @JoinColumn (nullable = false, name = "respondent_id")
 //    private Respondent respondent;

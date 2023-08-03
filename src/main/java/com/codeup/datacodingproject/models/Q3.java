@@ -23,6 +23,10 @@ public class Q3 {
     @Column(nullable = true)
     private String q3os;
 
+    @ManyToOne
+    @JoinColumn(name = "survey_answers_id")
+    private SurveyAnswers surveyAnswers;
+
 //    @ManyToOne
 //    @JoinColumn (nullable = false, name = "respondent_id")
 //    private Respondent respondent;
