@@ -326,7 +326,8 @@
         layoutName[4].setAttribute("type", "textarea");
         layoutName[4].className = "form-textarea-input";
         layoutName[4].setAttribute("id","textarea_" + questionText[questionArrayPosition].value);
-        layoutName[4].setAttribute("name","q" + questionText[questionArrayPosition].value)
+        layoutName[4].setAttribute("name","q" + questionText[questionArrayPosition].value);
+        layoutName[4].setAttribute('data-th-field', '*{q' + questionText[questionArrayPosition].value +'}');
     }
 
     function customizeHTMLLayoutForNumeric(layoutName, questionArrayPosition) {

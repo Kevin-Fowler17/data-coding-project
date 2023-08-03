@@ -10,6 +10,23 @@
 
 <h1>Survey Results Page</h1>
 
+<h1>Q1 Answer Percentages</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Answer Choice</th>
+    <th>Percentage</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="percentage : ${q1Percentages}">
+    <td th:text="${percentage[0]}"></td>
+    <td th:text="${percentage[1]} + '%'"></td>
+  </tr>
+  </tbody>
+</table>
+
 <footer th:replace="partials/partials.html :: footer" />
 
 </body>
