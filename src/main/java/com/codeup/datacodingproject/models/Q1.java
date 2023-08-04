@@ -23,6 +23,10 @@ public class Q1 {
     @Column(nullable = true)
     private String q1os;
 
+    @ManyToOne
+    @JoinColumn(name = "q1", referencedColumnName = "id", insertable = false, updatable = false)
+    private Q1Labels label;
+
     @OneToOne
     @JoinColumn(name = "survey_answers_id")
     private SurveyAnswers surveyAnswers;

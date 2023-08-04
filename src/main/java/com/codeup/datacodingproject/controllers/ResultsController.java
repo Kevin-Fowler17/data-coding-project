@@ -29,11 +29,13 @@ public class ResultsController {
         // Round the percentages
         List<Object[]> roundedQ1Percentages = new ArrayList<>();
         for (Object[] percentage : q1Percentages) {
-            String q1Value = (String) percentage[0];
-            double rawPercentage = (double) percentage[1];
-            double roundedPercentage = Math.round(rawPercentage * 100.0) / 100.0; // Round to 2 decimal places
-            roundedQ1Percentages.add(new Object[] { q1Value, roundedPercentage });
+            long q1Value = (long) percentage[0];
+            float rawPercentage = (float) percentage[1];
+            long roundedPercentage = Math.round(rawPercentage);
+            roundedQ1Percentages.add(new Object[] {q1Value, roundedPercentage});
         }
+
+        System.out.println(roundedQ1Percentages);
 
         model.addAttribute("roundedQ1Percentages", roundedQ1Percentages);
 
