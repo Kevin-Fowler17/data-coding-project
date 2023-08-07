@@ -27,17 +27,19 @@ public class ResultsController {
         List<Object[]> q1Percentages = surveyAnswersDao.getQ1AnswerPercentages();
 
         // Round the percentages
-        List<Object[]> roundedQ1Percentages = new ArrayList<>();
-        for (Object[] percentage : q1Percentages) {
-            long q1Value = (long) percentage[0];
-            float rawPercentage = (float) percentage[1];
-            long roundedPercentage = Math.round(rawPercentage);
-            roundedQ1Percentages.add(new Object[] {q1Value, roundedPercentage});
-        }
+//        List<Object[]> roundedQ1Percentages = new ArrayList<>();
+//        for (Object[] percentage : q1Percentages) {
+//            long q1Value = (long) percentage[0];
+//            float rawPercentage = (float) percentage[1];
+//            long roundedPercentage = Math.round(rawPercentage);
+//            roundedQ1Percentages.add(new Object[] {q1Value, roundedPercentage});
+//        }
+//
+//        System.out.println(roundedQ1Percentages);
+//
+//        model.addAttribute("roundedQ1Percentages", roundedQ1Percentages);
 
-        System.out.println(roundedQ1Percentages);
-
-        model.addAttribute("roundedQ1Percentages", roundedQ1Percentages);
+        model.addAttribute("q1Percentages", q1Percentages);
 
         System.out.println("**********************");
         System.out.println(q1Percentages);
