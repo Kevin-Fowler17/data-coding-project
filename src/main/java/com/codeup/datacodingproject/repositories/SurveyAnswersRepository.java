@@ -21,5 +21,35 @@ public interface SurveyAnswersRepository extends JpaRepository<SurveyAnswers, Lo
            "GROUP BY q1_labels.name", nativeQuery = true)
    List<Object[]> getQ1AnswerPercentages();
 
+   @Query(value = "SELECT q3_labels.name, ROUND((COUNT(q3.q3) / (SELECT COUNT(*) FROM survey_answers)) * 100, 0) AS percentage " +
+           "FROM q3 " +
+           "JOIN q3_labels ON q3.q3 = q3_labels.id " +
+           "GROUP BY q3_labels.name", nativeQuery = true)
+   List<Object[]> getQ3AnswerPercentages();
+
+   @Query(value = "SELECT q5_labels.name, ROUND((COUNT(q5.q5) / (SELECT COUNT(*) FROM survey_answers)) * 100, 0) AS percentage " +
+           "FROM q5 " +
+           "JOIN q5_labels ON q5.q5 = q5_labels.id " +
+           "GROUP BY q5_labels.name", nativeQuery = true)
+   List<Object[]> getQ5AnswerPercentages();
+
+   @Query(value = "SELECT q7_labels.name, ROUND((COUNT(q7.q7) / (SELECT COUNT(*) FROM survey_answers)) * 100, 0) AS percentage " +
+           "FROM q7 " +
+           "JOIN q7_labels ON q7.q7 = q7_labels.id " +
+           "GROUP BY q7_labels.name", nativeQuery = true)
+   List<Object[]> getQ7AnswerPercentages();
+
+   @Query(value = "SELECT q9_labels.name, ROUND((COUNT(q9.q9) / (SELECT COUNT(*) FROM survey_answers)) * 100, 0) AS percentage " +
+           "FROM q9 " +
+           "JOIN q9_labels ON q9.q9 = q9_labels.id " +
+           "GROUP BY q9_labels.name", nativeQuery = true)
+   List<Object[]> getQ9AnswerPercentages();
+
+   @Query(value = "SELECT q10_labels.name, ROUND((COUNT(q10.q10) / (SELECT COUNT(*) FROM survey_answers)) * 100, 0) AS percentage " +
+           "FROM q10 " +
+           "JOIN q10_labels ON q10.q10 = q10_labels.id " +
+           "GROUP BY q10_labels.name", nativeQuery = true)
+   List<Object[]> getQ10AnswerPercentages();
+
 
 }
