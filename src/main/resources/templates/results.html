@@ -10,20 +10,73 @@
 
 <h1>Survey Results Page</h1>
 
-<h1>Q1 Answer Percentages</h1>
-
+<h3>Q1 Answer Percentages</h3>
 <table>
-  <thead>
-  <tr>
-    <th>Answer Choice</th>
-    <th>Percentage</th>
-  </tr>
-  </thead>
+<!--  <thead>-->
+<!--  <tr>-->
+<!--    <th>Answer Choice</th>-->
+<!--    <th>Percentage</th>-->
+<!--  </tr>-->
+<!--  </thead>-->
   <tbody>
   <tr th:each="percentage : ${q1Percentages}">
     <td th:text="${percentage[0]}"></td>
     <td th:text="${percentage[1]} + '%'"></td>
+  </tr>
+  </tbody>
+</table>
 
+
+<h3>Q3 Answer Percentages</h3>
+<table>
+  <tbody>
+  <tr th:each="percentage : ${q3Percentages}">
+    <td th:text="${percentage[0]}"></td>
+    <td th:text="${percentage[1]} + '%'"></td>
+  </tr>
+  </tbody>
+</table>
+
+
+<h3>Q5 Answer Percentages</h3>
+<table>
+  <tbody>
+  <tr th:each="percentage : ${q5Percentages}">
+    <td th:text="${percentage[0]}"></td>
+    <td th:text="${percentage[1]} + '%'"></td>
+  </tr>
+  </tbody>
+</table>
+
+
+<h3>Q7 Answer Percentages</h3>
+<table>
+  <tbody>
+  <tr th:each="percentage : ${q7Percentages}">
+    <td th:text="${percentage[0]}"></td>
+    <td th:text="${percentage[1]} + '%'"></td>
+  </tr>
+  </tbody>
+</table>
+
+
+<h3>Q9 Answer Percentages</h3>
+<table>
+  <tbody>
+  <tr th:each="percentage : ${q9Percentages}">
+    <td th:text="${percentage[0]}"></td>
+    <td th:text="${percentage[1]} + '%'"></td>
+  </tr>
+  </tbody>
+</table>
+
+
+<h3>Q10 Answer Percentages</h3>
+<table>
+  <tbody>
+  <tr th:each="percentage : ${q10Percentages}">
+    <td th:text="${percentage[0]}"></td>
+    <td th:text="${percentage[1]} + '%'"></td>
   </tr>
   </tbody>
 </table>
