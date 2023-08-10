@@ -23,13 +23,19 @@ public class ResultsController {
 //        System.out.println("Results Controller");
 //        System.out.println("**********************");
 
-        List<Object[]> q1AnswerPercentages = surveyAnswersDao.getQAnswerPercentages(1);
-        List<Object[]> q3AnswerPercentages = surveyAnswersDao.getQAnswerPercentages(3);
-        List<Object[]> q5AnswerPercentages = surveyAnswersDao.getQAnswerPercentages(5);
-        List<Object[]> q7AnswerPercentages = surveyAnswersDao.getQAnswerPercentages(7);
-        List<Object[]> q9AnswerPercentages = surveyAnswersDao.getQAnswerPercentages(9);
-        List<Object[]> q10AnswerPercentages = surveyAnswersDao.getQAnswerPercentages(10);
+//        List<Object[]> q1AnswerPercentages = surveyAnswersDao.getQAnswerPercentages(1);
+//        List<Object[]> q3AnswerPercentages = surveyAnswersDao.getQAnswerPercentages(3);
+//        List<Object[]> q5AnswerPercentages = surveyAnswersDao.getQAnswerPercentages(5);
+//        List<Object[]> q7AnswerPercentages = surveyAnswersDao.getQAnswerPercentages(7);
+//        List<Object[]> q9AnswerPercentages = surveyAnswersDao.getQAnswerPercentages(9);
+//        List<Object[]> q10AnswerPercentages = surveyAnswersDao.getQAnswerPercentages(10);
 
+        List<Object[]> q1AnswerPercentages = surveyAnswersDao.getQ1AnswerPercentages();
+        List<Object[]> q3AnswerPercentages = surveyAnswersDao.getQ3AnswerPercentages();
+        List<Object[]> q5AnswerPercentages = surveyAnswersDao.getQ5AnswerPercentages();
+        List<Object[]> q7AnswerPercentages = surveyAnswersDao.getQ7AnswerPercentages();
+        List<Object[]> q9AnswerPercentages = surveyAnswersDao.getQ9AnswerPercentages();
+        List<Object[]> q10AnswerPercentages = surveyAnswersDao.getQ10AnswerPercentages();
 
 
         model.addAttribute("q1AnswerPercentages", q1AnswerPercentages);
